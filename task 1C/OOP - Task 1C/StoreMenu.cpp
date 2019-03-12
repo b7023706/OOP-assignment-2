@@ -1,6 +1,5 @@
 #include "StoreMenu.h"
 
-
 StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, app)
 {
 	Paint(); // required in constructor

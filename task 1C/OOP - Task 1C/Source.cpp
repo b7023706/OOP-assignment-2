@@ -169,30 +169,30 @@ void gameMenu(Game* game)
 	}
 }
 
-//void storeMenu()
-//{
-//	bool readyToGoBack = false;
-//
-//	while (readyToGoBack == false)
-//	{
-//		int choice = showStoreMenuAndGetUserChoice();
-//
-//		switch (choice)
-//		{
-//			case 'B': {
-//				readyToGoBack = true;
-//			} break;
-//			default: {
-//				int index = choice - '1';
-//
-//				if (index >= 0 && index < 9) // TODO: Hardcoded, change when using List<T>
-//				{
-//					gameMenu(app.GetStore().games[index]);
-//				}
-//			} break;
-//		}
-//	}
-//}
+void storeMenu()
+{
+	bool readyToGoBack = false;
+
+	while (readyToGoBack == false)
+	{
+		int choice = showStoreMenuAndGetUserChoice();
+
+		switch (choice)
+		{
+			case 'B': {
+				readyToGoBack = true;
+			} break;
+			default: {
+				int index = choice - '1';
+
+				if (index >= 0 && index < 9) // TODO: Hardcoded, change when using List<T>
+				{
+					gameMenu(app.GetStore().games[index]);
+				}
+			} break;
+		}
+	}
+}
 
 void loginUserMenu()
 {
