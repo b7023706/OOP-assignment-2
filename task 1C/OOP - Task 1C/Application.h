@@ -26,4 +26,7 @@ class Application
 		Store store;
 		Account* currentAccount;
 		User* currentUser;
+
+		bool userIsLoggedIn_ = true;
+
 };

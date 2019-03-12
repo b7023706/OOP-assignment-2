@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "Admin.h"
 #include "Utils.h"
+#include "MainMenu.h"
+
 
 // TODO: Remove from global scope once menu system is integrated
 Application app;
@@ -70,7 +72,7 @@ char showMainMenuAndGetUserChoice()
 	std::cout << "                    \n";
 	std::cout << "  >>> ";
 
-	return Utils::getCharFromUser();
+	return Utils::GetCharFromUser();
 }
 
 char showStoreMenuAndGetUserChoice()
@@ -95,7 +97,7 @@ char showStoreMenuAndGetUserChoice()
 	std::cout << "                    \n";
 	std::cout << "  >>> ";
 
-	return Utils::getCharFromUser();
+	return Utils::GetCharFromUser();
 }
 
 char showLoginUserMenuAndGetUserChoice(Account *account)
@@ -118,7 +120,7 @@ char showLoginUserMenuAndGetUserChoice(Account *account)
 	std::cout << "                    \n";
 	std::cout << "  >>> ";
 
-	return Utils::getCharFromUser();
+	return Utils::GetCharFromUser();
 }
 
 char showGameMenuAndGetUserChoice(Game* game)
@@ -141,7 +143,7 @@ char showGameMenuAndGetUserChoice(Game* game)
 	std::cout << "                            \n";
 	std::cout << "  >>> ";
 
-	return Utils::getCharFromUser();
+	return Utils::GetCharFromUser();
 }
 
 void gameMenu(Game* game)
@@ -167,30 +169,30 @@ void gameMenu(Game* game)
 	}
 }
 
-void storeMenu()
-{
-	bool readyToGoBack = false;
-
-	while (readyToGoBack == false)
-	{
-		int choice = showStoreMenuAndGetUserChoice();
-
-		switch (choice)
-		{
-			case 'B': {
-				readyToGoBack = true;
-			} break;
-			default: {
-				int index = choice - '1';
-
-				if (index >= 0 && index < 9) // TODO: Hardcoded, change when using List<T>
-				{
-					gameMenu(app.GetStore().games[index]);
-				}
-			} break;
-		}
-	}
-}
+//void storeMenu()
+//{
+//	bool readyToGoBack = false;
+//
+//	while (readyToGoBack == false)
+//	{
+//		int choice = showStoreMenuAndGetUserChoice();
+//
+//		switch (choice)
+//		{
+//			case 'B': {
+//				readyToGoBack = true;
+//			} break;
+//			default: {
+//				int index = choice - '1';
+//
+//				if (index >= 0 && index < 9) // TODO: Hardcoded, change when using List<T>
+//				{
+//					gameMenu(app.GetStore().games[index]);
+//				}
+//			} break;
+//		}
+//	}
+//}
 
 void loginUserMenu()
 {
@@ -213,7 +215,7 @@ void loginUserMenu()
 					std::string username = app.GetCurrentAccount()->users[index]->GetUsername();
 
 					std::cout << "  Enter password for " << username << ": ";
-					if (app.LoginUser(username, Utils::getLineFromUser()))
+					if (app.LoginUser(username, Utils::GetLineFromUser()))
 					{
 						readyToGoBack = true;
 					}
@@ -234,7 +236,7 @@ void mainMenu()
 		switch (choice)
 		{
 			case 'S': {
-				storeMenu();
+				//storeMenu();
 			} break;
 			case 'L': {
 				if (app.IsUserLoggedIn())

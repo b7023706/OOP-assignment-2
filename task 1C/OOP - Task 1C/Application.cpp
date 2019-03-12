@@ -12,6 +12,10 @@ Application::~Application()
 	}
 }
 
+
+
+//////////////////////////////////////////////////
+
 bool Application::IsUserLoggedIn() const
 {
 	return currentUser != nullptr;
@@ -32,10 +36,16 @@ User* Application::GetCurrentUser() const
 	return currentUser;
 }
 
+
+
+//////////////////////////////////////////////
+
 Store& Application::GetStore()
 {
 	return store;
 }
+
+//////////////////////////////////////////////
 
 bool Application::LoginAccount(const std::string& email, const std::string& password)
 {

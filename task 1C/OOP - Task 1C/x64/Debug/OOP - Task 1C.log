@@ -1,13 +1,16 @@
 ﻿  Utils.cpp
   User.cpp
+  StoreMenu.cpp
   Store.cpp
   Source.cpp
+\\studenthome.hallam.shu.ac.uk\studenthome7\9\b7021749\mywork\year2\oop\oop-assingmnet-2\task 1c\oop - task 1c\source.cpp(239): error C3861: 'storeMenu': identifier not found
   Player.cpp
+  Menu.cpp
+\\studenthome.hallam.shu.ac.uk\studenthome7\9\b7021749\mywork\year2\oop\oop-assingmnet-2\task 1c\oop - task 1c\menu.cpp(47): error C3861: 'StoreMenu': identifier not found
+  MainMenu.cpp
   LibraryItem.cpp
   Game.cpp
   Application.cpp
   Admin.cpp
   Account.cpp
   Generating Code...
-  OOP - Task 1C.vcxproj -> C:\Users\b7023706\Desktop\task 1C\x64\Debug\OOP - Task 1C.exe
-  OOP - Task 1C.vcxproj -> C:\Users\b7023706\Desktop\task 1C\x64\Debug\OOP - Task 1C.pdb (Partial PDB)
