@@ -6,7 +6,7 @@
 class MainMenu : public Menu
 {
 	public:
-		MainMenu(const std::string& title, Application * app);
-		virtual void OutputOptions() final;
-		//bool HandleChoice(char choice) final;
+		MainMenu(const std::string& title, Application* app);
+		void OutputOptions() final;
+		bool HandleChoice(char choice) final;
 };

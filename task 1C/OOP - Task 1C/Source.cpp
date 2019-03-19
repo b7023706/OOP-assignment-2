@@ -225,42 +225,49 @@ void loginUserMenu()
 	}
 }
 
-void mainMenu()
-{
-	bool wantsToExit = false;
 
-	while (wantsToExit == false)
-	{
-		int choice = showMainMenuAndGetUserChoice();
-
-		switch (choice)
-		{
-			case 'S': {
-				//storeMenu();
-			} break;
-			case 'L': {
-				if (app.IsUserLoggedIn())
-				{
-					app.LogoutUser();
-				}
-				else
-				{
-					loginUserMenu();
-				}
-			} break;
-			case 'B': {
-				wantsToExit = true;
-			} break;
-		}
-	}
-}
+//worked out
+//void mainMenu()
+//{
+//	bool wantsToExit = false;
+//
+//	while (wantsToExit == false)
+//	{
+//		int choice = showMainMenuAndGetUserChoice();
+//
+//		switch (choice)
+//		{
+//			case 'S': {
+//				storeMenu();
+//			} break;
+//			case 'L': {
+//				if (app.IsUserLoggedIn())
+//				{
+//					app.LogoutUser();
+//				}
+//				else
+//				{
+//					loginUserMenu();
+//				}
+//			} break;
+//			case 'B': {
+//				wantsToExit = true;
+//			} break;
+//		}
+//	}
+//}
 
 void main()
 {
+
 	// TODO: Remove call to dummy data, instead use Load and Save
 	createHardcodedTestData();
 
+
+
 	// TODO: app.Load();
-	mainMenu();
+	//mainMenu();
+	MainMenu("MAIN MENU", &app);
+
 	// TODO: app.Save();
 }

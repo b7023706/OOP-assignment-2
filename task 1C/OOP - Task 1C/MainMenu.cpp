@@ -7,6 +7,8 @@ MainMenu::MainMenu(const std::string& title, Application * app) : Menu(title, ap
 
 void MainMenu::OutputOptions()
 {
+
+
 	Option('S', "Browse Store");
 
 	if (app->IsUserLoggedIn())
@@ -20,7 +22,7 @@ void MainMenu::OutputOptions()
 	}
 }
 
-bool Menu::HandleChoice(char choice)
+bool MainMenu::HandleChoice(char choice)
 {
 	switch (choice)
 	{
@@ -35,7 +37,7 @@ bool Menu::HandleChoice(char choice)
 				std::string answer = Question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
-					//app->LogoutUser();							//come back too 
+					app->LogoutUser();							//come back too 
 				}
 			}
 			else
