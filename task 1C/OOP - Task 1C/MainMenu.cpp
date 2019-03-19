@@ -45,7 +45,7 @@ bool MainMenu::HandleChoice(char choice)
 				// this would need to go to a LoginMenu - similar to StoreMenu
 				// instead we just set logged in to true on the main app object
 
-				//app->LoginUser();
+				LoginUserMenu("Login", app);
 			}
 		} break;
 		case 'P':
