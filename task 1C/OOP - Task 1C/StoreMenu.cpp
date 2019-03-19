@@ -23,7 +23,8 @@ bool StoreMenu::HandleChoice(char choice)
 
 	if (index >= 0 && index < games.size())
 	{
-		Question("Not implemented, press return to continue (");
+		//Question("Not implemented, press return to continue (");
+		app->GetStore().games[index];
 		// go to game detail page
 	}
 

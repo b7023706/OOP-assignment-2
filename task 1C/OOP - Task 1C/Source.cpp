@@ -266,7 +266,6 @@ void main()
 
 
 	// TODO: app.Load();
-	//mainMenu();
 	MainMenu("MAIN MENU", &app);
 
 	// TODO: app.Save();
