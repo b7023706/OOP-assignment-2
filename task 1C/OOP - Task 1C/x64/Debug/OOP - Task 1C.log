@@ -1,6 +1,2 @@
-﻿  LoginUserMenu.cpp
-c:\users\b6021352\desktop\assignment_1c_gitrepo\oop-assignment-2\task 1c\oop - task 1c\loginusermenu.cpp(36): warning C4065: switch statement contains 'default' but no 'case' labels
-  MainMenu.cpp
-  Source.cpp
-  Generating Code...
-  OOP - Task 1C.vcxproj -> C:\Users\b6021352\Desktop\Assignment_1c_GitRepo\OOP-assignment-2\task 1C\x64\Debug\OOP - Task 1C.exe
+﻿  OOP - Task 1C.vcxproj -> C:\Users\b7023706\Desktop\OOP-assignment-2\task 1C\x64\Debug\OOP - Task 1C.exe
+  OOP - Task 1C.vcxproj -> C:\Users\b7023706\Desktop\OOP-assignment-2\task 1C\x64\Debug\OOP - Task 1C.pdb (Partial PDB)

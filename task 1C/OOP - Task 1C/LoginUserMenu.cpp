@@ -10,7 +10,7 @@ void LoginUserMenu::OutputOptions()
 
 	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
 	{
-		std::cout << "  " << (i + 1) << ") " << app->accounts[0]->users[i] << "\n";
+		std::cout << "  " << (i + 1) << ") " << app->accounts[0]->users[i]->GetUsername() << "\n";
 	}
 	
 }
