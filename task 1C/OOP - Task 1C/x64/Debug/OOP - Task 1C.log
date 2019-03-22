@@ -1,2 +1,40 @@
-﻿  OOP - Task 1C.vcxproj -> C:\Users\b7023706\Desktop\OOP-assignment-2\task 1C\x64\Debug\OOP - Task 1C.exe
-  OOP - Task 1C.vcxproj -> C:\Users\b7023706\Desktop\OOP-assignment-2\task 1C\x64\Debug\OOP - Task 1C.pdb (Partial PDB)
+﻿  Store.cpp
+  Source.cpp
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(34): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(34): error C2664: 'LibraryItem::LibraryItem(const LibraryItem &)': cannot convert argument 1 from 'const char [11]' to 'const LibraryItem &'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(34): note: Reason: cannot convert from 'const char [11]' to 'const LibraryItem'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(34): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(35): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(35): error C2664: 'LibraryItem::LibraryItem(const LibraryItem &)': cannot convert argument 1 from 'const char [11]' to 'const LibraryItem &'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(35): note: Reason: cannot convert from 'const char [11]' to 'const LibraryItem'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(35): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(36): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(36): error C2664: 'LibraryItem::LibraryItem(const LibraryItem &)': cannot convert argument 1 from 'const char [11]' to 'const LibraryItem &'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(36): note: Reason: cannot convert from 'const char [11]' to 'const LibraryItem'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(36): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(37): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(37): error C2664: 'LibraryItem::LibraryItem(const LibraryItem &)': cannot convert argument 1 from 'const char [11]' to 'const LibraryItem &'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(37): note: Reason: cannot convert from 'const char [11]' to 'const LibraryItem'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(37): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(38): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(38): error C2664: 'LibraryItem::LibraryItem(const LibraryItem &)': cannot convert argument 1 from 'const char [11]' to 'const LibraryItem &'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(38): note: Reason: cannot convert from 'const char [11]' to 'const LibraryItem'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(38): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(39): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(39): error C2664: 'LibraryItem::LibraryItem(const LibraryItem &)': cannot convert argument 1 from 'const char [11]' to 'const LibraryItem &'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(39): note: Reason: cannot convert from 'const char [11]' to 'const LibraryItem'
+  c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(39): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(88): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(88): error C2227: left of '->GetName' must point to class/struct/union/generic type
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\source.cpp(190): error C2676: binary '[': 'List<Game>' does not define this operator or a conversion to a type acceptable to the predefined operator
+  Generating Code...
+  Compiling...
+  Items.cpp
+  Generating Code...
+  Compiling...
+  StoreMenu.cpp
+  Menu.cpp
+  MainMenu.cpp
+  LoginUserMenu.cpp
+c:\users\b7023706\desktop\oop-assignment-2\task 1c\oop - task 1c\loginusermenu.cpp(36): warning C4065: switch statement contains 'default' but no 'case' labels
+  Generating Code...

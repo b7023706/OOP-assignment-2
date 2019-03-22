@@ -1,4 +1,5 @@
 #include "StoreMenu.h"
+#include "Items.h"					//////////////////////////////// clean up 
 
 StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, app)
 {
@@ -22,10 +23,8 @@ bool StoreMenu::HandleChoice(char choice)
 	int index = choice - '1';
 
 	if (index >= 0 && index < games.size())
-	{
-		//Question("Not implemented, press return to continue (");
-		app->GetStore().games[index];
-		// go to game detail page
+	{		
+		Items(index, app);
 	}
 
 	return false;
