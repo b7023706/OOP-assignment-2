@@ -31,12 +31,12 @@ void createHardcodedTestData()
 	Player* u3 = new Player("Charlie", "password", "2018-09-24");
 
 	// With some games in their library
-	u1->library[0] = new LibraryItem("2018-06-17", app.GetStore().games[0]);
-	u1->library[0] = new LibraryItem("2018-06-18", app.GetStore().games[1]);
-	u2->library[0] = new LibraryItem("2018-09-19", app.GetStore().games[2]);
-	u2->library[0] = new LibraryItem("2018-09-19", app.GetStore().games[3]);
-	u3->library[0] = new LibraryItem("2018-09-24", app.GetStore().games[3]);
-	u3->library[0] = new LibraryItem("2018-09-30", app.GetStore().games[6]);
+	u1->library[0] = new LibraryItem("2018-06-17", &app.GetStore().games.getListItem(app.GetStore().games, 0));
+	u1->library[0] = new LibraryItem("2018-06-18", &app.GetStore().games.getListItem(app.GetStore().games, 1));
+	u2->library[0] = new LibraryItem("2018-09-19", &app.GetStore().games.getListItem(app.GetStore().games, 2));
+	u2->library[0] = new LibraryItem("2018-09-19", &app.GetStore().games.getListItem(app.GetStore().games, 3));
+	u3->library[0] = new LibraryItem("2018-09-24", &app.GetStore().games.getListItem(app.GetStore().games, 3));
+	u3->library[0] = new LibraryItem("2018-09-30", &app.GetStore().games.getListItem(app.GetStore().games, 6));
 
 	// Make an account and attach the users
 	app.accounts[0] = new Account("alice@shu.com", "password", "2018-06-16");
@@ -48,182 +48,182 @@ void createHardcodedTestData()
 	app.LoginAccount("alice@shu.ac.uk", "password");
 }
 
-char showMainMenuAndGetUserChoice()
-{
-	system("CLS");
-	std::cout << "                    \n";
-	std::cout << "  -= GAME LIBRARY =-\n";
-	std::cout << "                    \n";
-	std::cout << "  S) Browse Store   \n";
-
-	if (app.IsUserLoggedIn())
-	{
-		std::cout << "  L) Logout of " << app.GetCurrentUser()->GetUsername() << "\n";
-		// TODO: User profile option
-	}
-	else
-	{
-		std::cout << "  L) Login      \n";
-	}
-
-	std::cout << "                    \n";
-	std::cout << "  B) Exit           \n";
-	std::cout << "                    \n";
-	std::cout << "                    \n";
-	std::cout << "  >>> ";
-
-	return Utils::GetCharFromUser();
-}
-
-char showStoreMenuAndGetUserChoice()
-{
-	system("CLS");
-	std::cout << "                    \n";
-	std::cout << "  -= STORE =-       \n";
-	std::cout << "                    \n";
-
-	// Output game list
-	for (int i = 0; i < 9; i++) // TODO: Hardcoded, change when using List<T>
-	{
-		std::cout << "  " << (i + 1) << ") " << app.GetStore().games[i]->GetName() << "\n";
-	}
-
-	// TODO: Implement search store option
-
-	// Output rest of menu
-	std::cout << "                    \n";
-	std::cout << "  B) Back           \n";
-	std::cout << "                    \n";
-	std::cout << "                    \n";
-	std::cout << "  >>> ";
-
-	return Utils::GetCharFromUser();
-}
-
-char showLoginUserMenuAndGetUserChoice(Account *account)
-{
-	system("CLS");
-	std::cout << "                    \n";
-	std::cout << "  -= LOGIN =-       \n";
-	std::cout << "                    \n";
-
-	// Output user list
-	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
-	{
-		std::cout << "  " << (i + 1) << ") " << account->users[i]->GetUsername() << "\n";
-	}
-
-	// Output rest of menu
-	std::cout << "                    \n";
-	std::cout << "  B) Back           \n";
-	std::cout << "                    \n";
-	std::cout << "                    \n";
-	std::cout << "  >>> ";
-
-	return Utils::GetCharFromUser();
-}
-
-char showGameMenuAndGetUserChoice(Game* game)
-{
-	system("CLS");
-	std::cout << "                                  \n";
-	std::cout << "  -= " << game->GetName() << " =- \n";
-	std::cout << "                                  \n";
-	std::cout << "  " << game->GetDescription() << "\n";
-	std::cout << "                                  \n";
-
-	if (app.IsUserLoggedIn())
-	{
-		std::cout << "  P) Purchase for " << (game->GetCost() / 100.0f) << "\n";
-		std::cout << "                                                      \n";
-	}
-
-	std::cout << "  B) Back                   \n";
-	std::cout << "                            \n";
-	std::cout << "                            \n";
-	std::cout << "  >>> ";
-
-	return Utils::GetCharFromUser();
-}
-
-void gameMenu(Game* game)
-{
-	bool readyToGoBack = false;
-
-	while (readyToGoBack == false)
-	{
-		int choice = showGameMenuAndGetUserChoice(game);
-
-		switch (choice)
-		{
-			case 'P': {
-				if (app.IsUserLoggedIn())
-				{
-					// TODO: Implement buying from the store
-				}
-			} break;
-			case 'B': {
-				readyToGoBack = true;
-			} break;
-		}
-	}
-}
-
-void storeMenu()
-{
-	bool readyToGoBack = false;
-
-	while (readyToGoBack == false)
-	{
-		int choice = showStoreMenuAndGetUserChoice();
-
-		switch (choice)
-		{
-			case 'B': {
-				readyToGoBack = true;
-			} break;
-			default: {
-				int index = choice - '1';
-
-				if (index >= 0 && index < 9) // TODO: Hardcoded, change when using List<T>
-				{
-					gameMenu(app.GetStore().games[index]);
-				}
-			} break;
-		}
-	}
-}
-
-void loginUserMenu()
-{
-	bool readyToGoBack = false;
-
-	while (readyToGoBack == false)
-	{
-		int choice = showLoginUserMenuAndGetUserChoice(app.GetCurrentAccount());
-
-		switch (choice)
-		{
-			case 'B': {
-				readyToGoBack = true;
-			} break;
-			default: {
-				int index = choice - '1';
-
-				if (index >= 0 && index < 3) // TODO: Hardcoded, change when using List<T>
-				{
-					std::string username = app.GetCurrentAccount()->users[index]->GetUsername();
-
-					std::cout << "  Enter password for " << username << ": ";
-					if (app.LoginUser(username, Utils::GetLineFromUser()))
-					{
-						readyToGoBack = true;
-					}
-				}
-			} break;
-		}
-	}
-}
+//char showMainMenuAndGetUserChoice()
+//{
+//	system("CLS");
+//	std::cout << "                    \n";
+//	std::cout << "  -= GAME LIBRARY =-\n";
+//	std::cout << "                    \n";
+//	std::cout << "  S) Browse Store   \n";
+//
+//	if (app.IsUserLoggedIn())
+//	{
+//		std::cout << "  L) Logout of " << app.GetCurrentUser()->GetUsername() << "\n";
+//		// TODO: User profile option
+//	}
+//	else
+//	{
+//		std::cout << "  L) Login      \n";
+//	}
+//
+//	std::cout << "                    \n";
+//	std::cout << "  B) Exit           \n";
+//	std::cout << "                    \n";
+//	std::cout << "                    \n";
+//	std::cout << "  >>> ";
+//
+//	return Utils::GetCharFromUser();
+//}
+//
+//char showStoreMenuAndGetUserChoice()
+//{
+//	system("CLS");
+//	std::cout << "                    \n";
+//	std::cout << "  -= STORE =-       \n";
+//	std::cout << "                    \n";
+//
+//	// Output game list
+//	for (int i = 0; i < 9; i++) // TODO: Hardcoded, change when using List<T>
+//	{
+//		std::cout << "  " << (i + 1) << ") " << app.GetStore().games[i]->GetName() << "\n";
+//	}
+//
+//	// TODO: Implement search store option
+//
+//	// Output rest of menu
+//	std::cout << "                    \n";
+//	std::cout << "  B) Back           \n";
+//	std::cout << "                    \n";
+//	std::cout << "                    \n";
+//	std::cout << "  >>> ";
+//
+//	return Utils::GetCharFromUser();
+//}
+//
+//char showLoginUserMenuAndGetUserChoice(Account *account)
+//{
+//	system("CLS");
+//	std::cout << "                    \n";
+//	std::cout << "  -= LOGIN =-       \n";
+//	std::cout << "                    \n";
+//
+//	// Output user list
+//	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+//	{
+//		std::cout << "  " << (i + 1) << ") " << account->users[i]->GetUsername() << "\n";
+//	}
+//
+//	// Output rest of menu
+//	std::cout << "                    \n";
+//	std::cout << "  B) Back           \n";
+//	std::cout << "                    \n";
+//	std::cout << "                    \n";
+//	std::cout << "  >>> ";
+//
+//	return Utils::GetCharFromUser();
+//}
+//
+//char showGameMenuAndGetUserChoice(Game* game)
+//{
+//	system("CLS");
+//	std::cout << "                                  \n";
+//	std::cout << "  -= " << game->GetName() << " =- \n";
+//	std::cout << "                                  \n";
+//	std::cout << "  " << game->GetDescription() << "\n";
+//	std::cout << "                                  \n";
+//
+//	if (app.IsUserLoggedIn())
+//	{
+//		std::cout << "  P) Purchase for " << (game->GetCost() / 100.0f) << "\n";
+//		std::cout << "                                                      \n";
+//	}
+//
+//	std::cout << "  B) Back                   \n";
+//	std::cout << "                            \n";
+//	std::cout << "                            \n";
+//	std::cout << "  >>> ";
+//
+//	return Utils::GetCharFromUser();
+//}
+//
+//void gameMenu(Game* game)
+//{
+//	bool readyToGoBack = false;
+//
+//	while (readyToGoBack == false)
+//	{
+//		int choice = showGameMenuAndGetUserChoice(game);
+//
+//		switch (choice)
+//		{
+//			case 'P': {
+//				if (app.IsUserLoggedIn())
+//				{
+//					// TODO: Implement buying from the store
+//				}
+//			} break;
+//			case 'B': {
+//				readyToGoBack = true;
+//			} break;
+//		}
+//	}
+//}
+//
+//void storeMenu()
+//{
+//	bool readyToGoBack = false;
+//
+//	while (readyToGoBack == false)
+//	{
+//		int choice = showStoreMenuAndGetUserChoice();
+//
+//		switch (choice)
+//		{
+//			case 'B': {
+//				readyToGoBack = true;
+//			} break;
+//			default: {
+//				int index = choice - '1';
+//
+//				if (index >= 0 && index < 9) // TODO: Hardcoded, change when using List<T>
+//				{
+//					gameMenu(app.GetStore().games[index]);
+//				}
+//			} break;
+//		}
+//	}
+//}
+//
+//void loginUserMenu()
+//{
+//	bool readyToGoBack = false;
+//
+//	while (readyToGoBack == false)
+//	{
+//		int choice = showLoginUserMenuAndGetUserChoice(app.GetCurrentAccount());
+//
+//		switch (choice)
+//		{
+//			case 'B': {
+//				readyToGoBack = true;
+//			} break;
+//			default: {
+//				int index = choice - '1';
+//
+//				if (index >= 0 && index < 3) // TODO: Hardcoded, change when using List<T>
+//				{
+//					std::string username = app.GetCurrentAccount()->users[index]->GetUsername();
+//
+//					std::cout << "  Enter password for " << username << ": ";
+//					if (app.LoginUser(username, Utils::GetLineFromUser()))
+//					{
+//						readyToGoBack = true;
+//					}
+//				}
+//			} break;
+//		}
+//	}
+//}
 
 
 //worked out
