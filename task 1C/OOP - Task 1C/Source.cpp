@@ -266,7 +266,9 @@ void main()
 
 
 	// TODO: app.Load();
+	app.Load();
 	MainMenu("MAIN MENU", &app);
 
 	// TODO: app.Save();
+	app.Save(app.GetStore().games);
 }

@@ -4,6 +4,9 @@
 #include "User.h"
 #include "Store.h"
 
+
+
+
 class Application
 {
 	public:
@@ -20,6 +23,9 @@ class Application
 		bool LoginAccount(const std::string& email, const std::string& password);
 		bool LoginUser(const std::string& username, const std::string& password);
 		void LogoutUser();
+
+		void Save(List<Game>);
+		void Load();
 		
 		Account* accounts[1] = { }; // TODO: this needs changing to a dynamic collection
 	private:
