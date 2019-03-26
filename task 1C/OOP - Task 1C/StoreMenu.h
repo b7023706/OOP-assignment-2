@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+
 class StoreMenu : public Menu
 {
 
@@ -11,6 +12,6 @@ class StoreMenu : public Menu
 		virtual void OutputOptions() final;
 		virtual bool HandleChoice(char choice) final;
 	private:
-		std::vector<std::string> games = { "Factorio", "The Witness", "INSIDE", "Brothers" };
+		//std::vector<std::string> games = { "Factorio", "The Witness", "INSIDE", "Brothers" };
 
 };
