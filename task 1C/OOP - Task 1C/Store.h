@@ -7,6 +7,6 @@ class Store
 	public:
 		Store();
 		~Store();
-		List<Game> games = { }; // TODO: should be a dynamic collection
+		List<Game> games = { };
 	private:
 };
