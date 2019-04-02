@@ -1,2 +1,6 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=8.1
+<<<<<<< HEAD
 Debug|x64|\\studenthome.hallam.shu.ac.uk\STUDENTHOME7\9\b7021749\MyWork\OOP-assignment-2\task 1C\|
+=======
+Debug|x64|C:\Users\b6021352\Desktop\OOP-assignment-2\task 1C\|
+>>>>>>> 1c62e8e5edcce9859521db8922ae4e8a05009cd6

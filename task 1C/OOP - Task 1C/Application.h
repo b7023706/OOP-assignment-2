@@ -27,7 +27,7 @@ class Application
 		void Save(List<Game>);
 		void Load();
 		
-		Account* accounts[1] = { }; // TODO: this needs changing to a dynamic collection
+		List<Account*> accounts = { };
 	private:
 		Store store;
 		Account* currentAccount;
