@@ -16,15 +16,15 @@ Application app;
 void createHardcodedTestData()
 {
 	// Setup store with some games
-	app.GetStore().games.addAtEnd(Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
-	app.GetStore().games.addAtEnd(Game("Braid", "A time twisting puzzle game.", 499, 15));
-	app.GetStore().games.addAtEnd(Game("Factorio", "Build a complicated factory in space.", 1599, 12));
-	app.GetStore().games.addAtEnd(Game("LIMBO", "Watch out for that spider.", 299, 12));
-	app.GetStore().games.addAtEnd(Game("INSIDE", "What are those scientists even doing?!", 1299, 15));
-	app.GetStore().games.addAtEnd(Game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15));
-	app.GetStore().games.addAtEnd(Game("Half Life 3", "It's never coming out.", 5999, 18));
-	app.GetStore().games.addAtEnd(Game("Castle Crashers", "A small giraffe follows you around.", 999, 18));
-	app.GetStore().games.addAtEnd(Game("Brothers", "Split your brain into two thumbs.", 799, 15));
+	//app.GetStore().games.addAtEnd(Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
+	//app.GetStore().games.addAtEnd(Game("Braid", "A time twisting puzzle game.", 499, 15));
+	//app.GetStore().games.addAtEnd(Game("Factorio", "Build a complicated factory in space.", 1599, 12));
+	//app.GetStore().games.addAtEnd(Game("LIMBO", "Watch out for that spider.", 299, 12));
+	//app.GetStore().games.addAtEnd(Game("INSIDE", "What are those scientists even doing?!", 1299, 15));
+	//app.GetStore().games.addAtEnd(Game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15));
+	//app.GetStore().games.addAtEnd(Game("Half Life 3", "It's never coming out.", 5999, 18));
+	//app.GetStore().games.addAtEnd(Game("Castle Crashers", "A small giraffe follows you around.", 999, 18));
+	//app.GetStore().games.addAtEnd(Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	// Create some users
 	Player* u1 = new Admin("Alice", "password", Date(16, 6, 2018));
@@ -32,12 +32,12 @@ void createHardcodedTestData()
 	Player* u3 = new Player("Charlie", "password", Date(24, 9, 2018));
 
 	// With some games in their library
-	u1->library[0] = new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0));
+	/*u1->library[0] = new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0));
 	u1->library[0] = new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1));
 	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2));
 	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
 	u3->library[0] = new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
-	u3->library[0] = new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6));
+	u3->library[0] = new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6));*/
 
 	// Make an account and attach the users
 	app.accounts[0] = new Account("alice@shu.com", "password", Date(16, 6, 2018));
