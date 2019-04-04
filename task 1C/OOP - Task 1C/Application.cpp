@@ -145,7 +145,7 @@ void Application::Load()
 		} while (total.at(pos) != '|');
 		
 		string m;
-		for (int k = 0; k < p; k++)
+		for (int k = 0; k < p-1; k++)
 		{
 			m = m + des.at(k);
 		}
@@ -176,7 +176,7 @@ void Application::Load()
 			pos++;
 			cost.push_back(total.at(pos));
 		} while (total.at(pos) != '|');
-		for (int i = 0; i < counter; i++)
+		for (int i = 0; i < counter-1; i++)
 		{
 			int temp = (int)cost.at(i);
 			temp -= 48;
@@ -202,11 +202,17 @@ void Application::Save(List<Game> aList)
 	std::ofstream DataBase;
 	DataBase.open("DataBaseSerialised", ios::trunc);
 
+	//games
 	const int listLength = aList.length();
 	DataBase << listLength << "|";
 	for (int i = 0; i < listLength; i++)
 	{
 		DataBase << aList.getListItem(GetStore().games, i).GetName() << "|" << aList.getListItem(GetStore().games, i).GetDescription() << "|" << aList.getListItem(GetStore().games, i).GetCost() << "|";
 	}
+
+	//accounts
+	//need to know if admin
+	
+
 	DataBase.close();
 }
