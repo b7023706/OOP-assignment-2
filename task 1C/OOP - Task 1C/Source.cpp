@@ -32,21 +32,18 @@ void createHardcodedTestData()
 	Player* u3 = new Player("Charlie", "password", Date(24, 9, 2018));
 
 	// With some games in their library
-<<<<<<< HEAD
 	/*u1->library[0] = new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0));
 	u1->library[0] = new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1));
 	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2));
 	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
 	u3->library[0] = new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
 	u3->library[0] = new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6));*/
-=======
 	u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
 	u1->library.addAtEnd(new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1)));
 	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2)));
 	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
 	u3->library.addAtEnd(new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
 	u3->library.addAtEnd(new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6)));
->>>>>>> 1c62e8e5edcce9859521db8922ae4e8a05009cd6
 
 	// Make an account and attach the users
 	app.accounts.addAtEnd(new Account("alice@shu.com", "password", Date(16, 6, 2018)));
@@ -269,6 +266,7 @@ void createHardcodedTestData()
 
 void main()
 {
+	app.Load();
 
 	// TODO: Remove call to dummy data, instead use Load and Save
 	createHardcodedTestData();
@@ -276,7 +274,6 @@ void main()
 
 
 	// TODO: app.Load();
-	app.Load();
 	MainMenu("MAIN MENU", &app);
 
 	// TODO: app.Save();
