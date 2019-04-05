@@ -12,7 +12,7 @@ void Search::OutputOptions()
 	for (int i = 0; i < sr.length(); i++)
 	{
 		// adding 1 so the display is nicer for the user
-		Option(i + 1, sr.getListItem(sr, i).GetName());
+		Option(i + 1, sr.getListItem(i).GetName());
 	}
 }
 
@@ -25,7 +25,8 @@ bool Search::HandleChoice(char choice)
 	
 	if (index >= 0 && index < sr.length())
 	{
-		Items(index, app);
+		Items(index, app, sr);
+		
 	}
 
 

@@ -1,6 +1,6 @@
 #include "Items.h"
 
-Items::Items(int index, Application * app) : Menu("GAME DESCRIPTION", app)
+Items::Items(int index, Application * app,List<Game> list) : Menu("GAME DESCRIPTION", app), list(list)
 {
 	ItemOption = index;
 	Paint();
@@ -16,9 +16,9 @@ Items::~Items()
 void Items::OutputOptions()
 {
 	List<Game> aList;
-	std::cout << "  -= " << aList.getListItem(app->GetStore().games, ItemOption).GetName() <<" =-\n";
-	std::cout << aList.getListItem(app->GetStore().games, ItemOption).GetDescription() << "\n";
-	std::cout << aList.getListItem(app->GetStore().games, ItemOption).GetCost() << "\n";
+	std::cout << "  -= " << list.getListItem(ItemOption).GetName() <<" =-\n";
+	std::cout << list.getListItem(ItemOption).GetDescription() << "\n";
+	std::cout << list.getListItem(ItemOption).GetCost() << "\n";
 	
 
 	if (app->IsUserLoggedIn())
@@ -38,9 +38,9 @@ bool Items::HandleChoice(char choice)
 	{
 	case 'P': if (app->IsUserLoggedIn()) 
 		{
-		if (app->GetCurrentUser()->GetCredits() >= aList.getListItem(app->GetStore().games, ItemOption).GetCost())
+		if (app->GetCurrentUser()->GetCredits() >= list.getListItem(ItemOption).GetCost())
 		{
-			app->GetCurrentUser()->SetCredits(aList.getListItem(app->GetStore().games, ItemOption).GetCost());
+			app->GetCurrentUser()->SetCredits(list.getListItem(ItemOption).GetCost());
 			Question("You have been billed");
 			//u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
 			//add to account
@@ -51,15 +51,3 @@ bool Items::HandleChoice(char choice)
 	return false;
 }
 
-//Game Items::getListItem(List<Game> gameList, int count)
-//{
-//	if (count == 0)
-//	{
-//		return gameList.first();
-//	}
-//	else
-//	{
-//		count--;
-//		return getListItem(gameList.tail(), count);
-//	}
-//}

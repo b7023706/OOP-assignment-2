@@ -64,7 +64,7 @@ class List
     void deleteOne(const T&);                // delete first occurrence of item
     int length() const;                      // return length
     bool contains(const T&) const;           // check if an item is in list
-	T getListItem(List<T>, int);
+	T getListItem(int) const;
   private:
     Node<T>* head_;                          // point onto first item (nullptr if empty)
     Node<T>* end() const;                    // return address of last item (nullptr if empty)
@@ -286,16 +286,16 @@ void List<T>::copy(const List<T>& other)
 }
 
 template <class T>
-T List<T>::getListItem(List<T> itemList, int count)
+T List<T>::getListItem(int count) const
 {
 	if (count == 0)
 	{
-		return itemList.first();
+		return first();
 	}
 	else
 	{
 		count--;
-		return getListItem(itemList.tail(), count);
+		return tail().getListItem(count);
 	}
 }
 

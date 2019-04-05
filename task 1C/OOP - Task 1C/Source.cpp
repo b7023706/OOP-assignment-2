@@ -38,18 +38,18 @@ void createHardcodedTestData()
 	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
 	u3->library[0] = new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
 	u3->library[0] = new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6));*/
-	u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
-	u1->library.addAtEnd(new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1)));
-	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2)));
-	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
-	u3->library.addAtEnd(new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
-	u3->library.addAtEnd(new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6)));
+	u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(0)));
+	u1->library.addAtEnd(new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(1)));
+	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(2)));
+	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(3)));
+	u3->library.addAtEnd(new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(3)));
+	u3->library.addAtEnd(new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(6)));
 
 	// Make an account and attach the users
 	app.accounts.addAtEnd(new Account("alice@shu.com", "password", Date(16, 6, 2018)));
-	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(u1);
-	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(u2);
-	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(u3);
+	app.accounts.getListItem(0)->users.addAtEnd(u1);
+	app.accounts.getListItem(0)->users.addAtEnd(u2);
+	app.accounts.getListItem(0)->users.addAtEnd(u3);
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
 	app.LoginAccount("alice@shu.ac.uk", "password");

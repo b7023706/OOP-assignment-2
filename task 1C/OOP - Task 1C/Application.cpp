@@ -15,7 +15,7 @@ Application::~Application()
 {
 	for (int i = 0; i < 1; ++i)
 	{
-		delete accounts.getListItem(accounts, i);
+		delete accounts.getListItem(i);
 	}
 }
 
@@ -57,7 +57,7 @@ Store& Application::GetStore()
 bool Application::LoginAccount(const std::string& email, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first account
-	currentAccount = accounts.getListItem(accounts, 0);
+	currentAccount = accounts.getListItem(0);
 
 	return true;
 }
@@ -70,11 +70,11 @@ bool Application::LoginUser(const std::string& username, const std::string& pass
 	
 	for (int i = 0; i <= GetCurrentAccount()->users.length() - 1; i++) 
 	{
-		if (username == GetCurrentAccount()->users.getListItem(GetCurrentAccount()->users, i)->GetUsername())
+		if (username == GetCurrentAccount()->users.getListItem(i)->GetUsername())
 		{
-			if (password == GetCurrentAccount()->users.getListItem(GetCurrentAccount()->users, i)->GetPassword())
+			if (password == GetCurrentAccount()->users.getListItem(i)->GetPassword())
 			{
-				currentUser = currentAccount->users.getListItem(currentAccount->users, i);
+				currentUser = currentAccount->users.getListItem(i);
 				return true;
 			}
 		}
@@ -219,7 +219,7 @@ void Application::Save(List<Game> aList)
 	DataBase << listLength << "|";
 	for (int i = 0; i < listLength; i++)
 	{
-		DataBase << aList.getListItem(GetStore().games, i).GetName() << "|" << aList.getListItem(GetStore().games, i).GetDescription() << "|" << aList.getListItem(GetStore().games, i).GetCost() << "|";
+		DataBase << aList.getListItem(i).GetName() << "|" << aList.getListItem(i).GetDescription() << "|" << aList.getListItem(i).GetCost() << "|";
 	}
 
 	//accounts
