@@ -11,33 +11,20 @@
 
 
 // TODO: Remove from global scope once menu system is integrated
-Application app;
+//Application app;
 
-void createHardcodedTestData()
+void main()
 {
-	// Setup store with some games
-	//app.GetStore().games.addAtEnd(Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
-	//app.GetStore().games.addAtEnd(Game("Braid", "A time twisting puzzle game.", 499, 15));
-	//app.GetStore().games.addAtEnd(Game("Factorio", "Build a complicated factory in space.", 1599, 12));
-	//app.GetStore().games.addAtEnd(Game("LIMBO", "Watch out for that spider.", 299, 12));
-	//app.GetStore().games.addAtEnd(Game("INSIDE", "What are those scientists even doing?!", 1299, 15));
-	//app.GetStore().games.addAtEnd(Game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15));
-	//app.GetStore().games.addAtEnd(Game("Half Life 3", "It's never coming out.", 5999, 18));
-	//app.GetStore().games.addAtEnd(Game("Castle Crashers", "A small giraffe follows you around.", 999, 18));
-	//app.GetStore().games.addAtEnd(Game("Brothers", "Split your brain into two thumbs.", 799, 15));
-
+	Application app;
+	app.Load();
+	// TODO: Remove call to dummy data, instead use Load and Save
+	//createHardcodedTestData();
 	// Create some users
 	Player* u1 = new Admin("Alice", "password", Date(16, 6, 2018), 1000004);
 	Player* u2 = new Player("Bob", "password", Date(19, 9, 2018), 1000);
 	Player* u3 = new Player("Charlie", "password", Date(24, 9, 2018), 1204);
 
 	// With some games in their library
-	/*u1->library[0] = new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0));
-	u1->library[0] = new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1));
-	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2));
-	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
-	u3->library[0] = new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
-	u3->library[0] = new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6));*/
 	u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
 	u1->library.addAtEnd(new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1)));
 	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2)));
@@ -53,8 +40,57 @@ void createHardcodedTestData()
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
 	app.LoginAccount("alice@shu.ac.uk", "password");
+
+
+	// TODO: app.Load();
+	MainMenu("MAIN MENU", &app);
+
+	// TODO: app.Save();
+	app.Save(app.GetStore().games);
 }
 
+
+//void createHardcodedTestData()
+//{
+//	// Setup store with some games
+//	//app.GetStore().games.addAtEnd(Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
+//	//app.GetStore().games.addAtEnd(Game("Braid", "A time twisting puzzle game.", 499, 15));
+//	//app.GetStore().games.addAtEnd(Game("Factorio", "Build a complicated factory in space.", 1599, 12));
+//	//app.GetStore().games.addAtEnd(Game("LIMBO", "Watch out for that spider.", 299, 12));
+//	//app.GetStore().games.addAtEnd(Game("INSIDE", "What are those scientists even doing?!", 1299, 15));
+//	//app.GetStore().games.addAtEnd(Game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15));
+//	//app.GetStore().games.addAtEnd(Game("Half Life 3", "It's never coming out.", 5999, 18));
+//	//app.GetStore().games.addAtEnd(Game("Castle Crashers", "A small giraffe follows you around.", 999, 18));
+//	//app.GetStore().games.addAtEnd(Game("Brothers", "Split your brain into two thumbs.", 799, 15));
+//
+//	// Create some users
+//	Player* u1 = new Admin("Alice", "password", Date(16, 6, 2018), 1000004);
+//	Player* u2 = new Player("Bob", "password", Date(19, 9, 2018), 1000);
+//	Player* u3 = new Player("Charlie", "password", Date(24, 9, 2018), 1204);
+//
+//	// With some games in their library
+//	/*u1->library[0] = new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0));
+//	u1->library[0] = new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1));
+//	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2));
+//	u2->library[0] = new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
+//	u3->library[0] = new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3));
+//	u3->library[0] = new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6));*/
+//	u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
+//	u1->library.addAtEnd(new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1)));
+//	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2)));
+//	u2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
+//	u3->library.addAtEnd(new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
+//	u3->library.addAtEnd(new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6)));
+//
+//	// Make an account and attach the users
+//	app.accounts.addAtEnd(new Account("alice@shu.com", "password", Date(16, 6, 2018)));
+//	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(u1);
+//	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(u2);
+//	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(u3);
+//
+//	// TODO: We need a login menu for accounts, for now we log in the only account
+//	app.LoginAccount("alice@shu.ac.uk", "password");
+//}
 //char showMainMenuAndGetUserChoice()
 //{
 //	system("CLS");
@@ -263,19 +299,3 @@ void createHardcodedTestData()
 //		}
 //	}
 //}
-
-void main()
-{
-	app.Load();
-
-	// TODO: Remove call to dummy data, instead use Load and Save
-	createHardcodedTestData();
-
-
-
-	// TODO: app.Load();
-	MainMenu("MAIN MENU", &app);
-
-	// TODO: app.Save();
-	app.Save(app.GetStore().games);
-}

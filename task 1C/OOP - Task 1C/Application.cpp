@@ -33,14 +33,13 @@ bool Application::IsAccountLoggedIn() const
 	return currentAccount != nullptr;
 }
 
-Account* Application::GetCurrentAccount() const
-{
-	return currentAccount;
-}
-
 User* Application::GetCurrentUser() const
 {
 	return currentUser;
+}
+Account* Application::GetCurrentAccount() const
+{
+	return currentAccount;
 }
 
 
@@ -56,10 +55,19 @@ Store& Application::GetStore()
 
 bool Application::LoginAccount(const std::string& email, const std::string& password)
 {
-	// TODO: This currently always logs you in as the first account
-	currentAccount = accounts.getListItem(accounts, 0);
+	//currentAccount = accounts.getListItem(accounts, 0);
+	for (int i = 0; i <= accounts.length() - 1; i++)
+	{
+		if (email == accounts.getListItem(accounts, i)->GetEmail())
+		{
+			if (password == accounts.getListItem(accounts, i)->GetPassword())
+			{
+				currentAccount = accounts.getListItem(accounts, i);
+				return true;
+			}
+		}
+	}
 
-	return true;
 }
 
 bool Application::LoginUser(const std::string& username, const std::string& password)
@@ -85,6 +93,11 @@ bool Application::LoginUser(const std::string& username, const std::string& pass
 void Application::LogoutUser()
 {
 	currentUser = nullptr;
+}
+
+void Application::LogoutAccount()
+{
+	currentAccount = nullptr;
 }
 
 void Application::Load()
