@@ -4,23 +4,45 @@ MainMenu::MainMenu(const std::string& title, Application * app) : Menu(title, ap
 {
 	Paint(); // required in constructor
 }
+//void MainMenu::AccountLoginOption() {
+//
+//	if (app->IsAccountLoggedIn()) {
+//
+//		Option('E', "Logout Email Account");
+//
+//	}
+//
+//	Option('E', "Login Email Account");
+//
+//
+//}
+
 
 void MainMenu::OutputOptions()
 {
 
+	if (app->IsAccountLoggedIn()) {
 
-	Option('S', "Browse Store");
+		Option('E', "Logout Email Account");
+		Option('S', "Browse Store");
 
-	if (app->IsUserLoggedIn())
-	{
-		Option('P', "View Profile");
-		Option('L', "Logout");
+		if (app->IsUserLoggedIn())
+		{
+			Option('P', "View Profile");
+			Option('L', "Logout");
+		}
+		else
+		{
+			Option('L', "Login");
+		}
+
+
 	}
 	else
-	{
-		Option('L', "Login");
+		Option('E', "Login Email Account");
+
 	}
-}
+
 
 bool MainMenu::HandleChoice(char choice)
 {
@@ -57,6 +79,23 @@ bool MainMenu::HandleChoice(char choice)
 				// notice the if - this only works if somebody is logged in
 			}
 		} break;
+
+		case'E':
+			if (app->IsAccountLoggedIn())
+			{
+				std::string answer = Question("Are you sure?");
+				if (answer == "y" || answer == "Y")
+				{
+					app->LogoutAccount();							//come back too 
+				}
+			}
+			else
+			{
+				LoginAccountMenu("Account Menu", app);
+			}
+
+
+			break;
 	}
 
 	return false;
