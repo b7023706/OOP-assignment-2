@@ -11,3 +11,8 @@ char Utils::GetCharFromUser()
 {
     return toupper(GetLineFromUser()[0]);
 }
+
+void Utils::SearchGame(std::string search)
+{
+
+}

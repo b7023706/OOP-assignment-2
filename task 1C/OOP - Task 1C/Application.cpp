@@ -65,9 +65,21 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first user
-	currentUser = currentAccount->users.getListItem(currentAccount->users, 0);
+	//currentUser = currentAccount->users.getListItem(currentAccount->users, 0);
+	
+	
+	for (int i = 0; i <= GetCurrentAccount()->users.length() - 1; i++) 
+	{
+		if (username == GetCurrentAccount()->users.getListItem(GetCurrentAccount()->users, i)->GetUsername())
+		{
+			if (password == GetCurrentAccount()->users.getListItem(GetCurrentAccount()->users, i)->GetPassword())
+			{
+				currentUser = currentAccount->users.getListItem(currentAccount->users, i);
+				return true;
+			}
+		}
+	}
 
-	return true;
 }
 
 void Application::LogoutUser()

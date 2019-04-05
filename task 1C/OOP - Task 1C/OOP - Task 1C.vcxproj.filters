@@ -121,9 +121,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataBaseSerialised">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="CopyOfData">
       <Filter>Resource Files</Filter>
     </None>

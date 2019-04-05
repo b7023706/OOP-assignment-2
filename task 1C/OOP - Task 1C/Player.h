@@ -7,7 +7,7 @@
 class Player : public User
 {
 	public:
-		Player(const std::string&, const std::string&, const Date);
+		Player(const std::string&, const std::string&, const Date, int);
 		~Player();
 		List<LibraryItem*> library = { };
 	private:
