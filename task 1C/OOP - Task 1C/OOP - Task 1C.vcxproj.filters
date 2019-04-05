@@ -127,5 +127,8 @@
     <None Include="CopyOfData">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Data">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

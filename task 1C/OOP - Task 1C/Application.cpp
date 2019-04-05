@@ -80,7 +80,7 @@ void Application::Load()
 	char x;
 	string total;
 	ifstream Loaded;
-	Loaded.open("DataBaseSerialised");
+	Loaded.open("Data");
 	if (!Loaded)
 	{
 		Loaded.close();
@@ -200,7 +200,7 @@ void Application::Load()
 void Application::Save(List<Game> aList)
 {
 	std::ofstream DataBase;
-	DataBase.open("DataBaseSerialised", ios::trunc);
+	DataBase.open("Data", ios::trunc);
 
 	//games
 	const int listLength = aList.length();
