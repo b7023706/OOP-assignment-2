@@ -1,5 +1,6 @@
 #pragma once
 #include "Menu.h"
+#include "Search.h"
 #include <string>
 #include <vector>
 
@@ -13,5 +14,6 @@ class StoreMenu : public Menu
 		virtual bool HandleChoice(char choice) final;
 	private:
 		//std::vector<std::string> games = { "Factorio", "The Witness", "INSIDE", "Brothers" };
+		List<Game> searchResults;
 
 };

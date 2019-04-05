@@ -66,7 +66,7 @@ bool Application::LoginUser(const std::string& username, const std::string& pass
 {
 	// TODO: This currently always logs you in as the first user
 	//currentUser = currentAccount->users.getListItem(currentAccount->users, 0);
-	
+
 	
 	for (int i = 0; i <= GetCurrentAccount()->users.length() - 1; i++) 
 	{

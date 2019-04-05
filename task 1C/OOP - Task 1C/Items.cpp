@@ -1,6 +1,6 @@
 #include "Items.h"
 
-Items::Items(int index, Application * app) : Menu("game description", app)
+Items::Items(int index, Application * app) : Menu("GAME DESCRIPTION", app)
 {
 	ItemOption = index;
 	Paint();

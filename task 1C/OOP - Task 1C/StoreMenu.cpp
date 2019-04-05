@@ -1,5 +1,6 @@
 #include "StoreMenu.h"
 #include "Items.h"					//////////////////////////////// clean up 
+#include "Utils.h"
 
 StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, app)
 {
@@ -10,9 +11,10 @@ void StoreMenu::OutputOptions()
 {
 	for (int i = 0; i < app->GetStore().games.length(); i++)
 	{
-		// adding 1 so the display is nicer for the user
+			// adding 1 so the display is nicer for the user
 		Option(i + 1, app->GetStore().games.getListItem(app->GetStore().games, i).GetName());
 	}
+	Option('S', "Search store");
 }
 
 bool StoreMenu::HandleChoice(char choice)
@@ -25,6 +27,12 @@ bool StoreMenu::HandleChoice(char choice)
 	if (index >= 0 && index <  app->GetStore().games.length())
 	{		
 		Items(index, app);
+	}
+	else if (toupper(choice) == 'S')
+	{
+		Utils u;
+		searchResults = u.SearchGame(app, app->GetStore().games);
+		Search("SEARCH RESULTS", app, searchResults);
 	}
 
 	return false;
