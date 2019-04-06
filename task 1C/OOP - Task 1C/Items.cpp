@@ -15,7 +15,6 @@ Items::~Items()
 
 void Items::OutputOptions()
 {
-	List<Game> aList;
 	std::cout << "  -= " << list.getListItem(ItemOption).GetName() <<" =-\n";
 	std::cout << list.getListItem(ItemOption).GetDescription() << "\n";
 	std::cout << list.getListItem(ItemOption).GetCost() << "\n";
@@ -32,7 +31,6 @@ void Items::OutputOptions()
 
 bool Items::HandleChoice(char choice)
 {
-	List<Game> aList;
 
 	switch (choice)
 	{

@@ -89,121 +89,65 @@ void Application::LogoutUser()
 
 void Application::Load()
 {
-	char x;
 	string total;
 	ifstream Loaded;
 	Loaded.open("Data");
-	if (!Loaded)
-	{
-		Loaded.close();
-	}
-	else
-	{
-		
-		while (Loaded >> x)
-		{
-			total = total + x;
-		}
-		Loaded.close();
-	}
 
-
-
-	///////////////////////////////////////////this gets the first value and converts it to integer, this is so we know how many games we need to process/////////////////////////////////////////////
-	vector<char> tempLength{};
-	int Length = 0;
-	int pos = -1;
-	//seperation
-	do {
-		pos++;
-		tempLength.push_back(total.at(pos));
-	} while (tempLength.at(pos) != '|');
-	for (int i = 0; i < pos; i++)
-	{
-		int temp = (int)tempLength.at(i);
-		temp -= 48;
-		Length = Length * 10 + temp;
-	}
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	vector<string> names;
-	vector<string> description;
-	vector<int> price;
-	for (int i = 0; i < Length; i++)
+	vector<string> descriptions;
+	vector<int> prices;
+	vector<int> ratings;
+	vector<string> input;
+	vector<string> separated;
+	string line;
+	string objects;
+	
+
+	while (getline(Loaded, line))
 	{
-		vector<char> name;
-		int t = 0;
-		//get name///////////////////////////////////////////////
-		do {
-			pos++;
-			t++;
-			name.push_back(total.at(pos));
-		} while (total.at(pos) != '|');
-
-		string n;
-		for (int k = 0; k < t-1; k++)
-		{
-			n = n + name.at(k);
-		}
-
-		names.push_back(n);
-
-		//get description//////////////////////////////////////////
-		vector<char> des;
-		int p = 0;
-		do {
-			pos++;
-			p++;
-			des.push_back(total.at(pos));
-		} while (total.at(pos) != '|');
-		
-		string m;
-		for (int k = 0; k < p-1; k++)
-		{
-			m = m + des.at(k);
-		}
-
-		description.push_back(m);
-
-
-		//get cost//////////////////////////////////////////////////////////
-		vector<char> cost{};
-		int counter = 0;
-		////seperation
-		//do {
-		//	pos++;
-		//	counter++;
-		//	cost.push_back(total.at(pos));
-		//} while (total.at(pos) != '|');
-
-		//string s;
-		//for (int i = 0; i < counter; i++)
-		//{
-		//	s = s+ cost.at(i);
-		//}
-		//price.push_back(s);
-		int value = 0;
-
-		do {
-			counter++;
-			pos++;
-			cost.push_back(total.at(pos));
-		} while (total.at(pos) != '|');
-		for (int i = 0; i < counter-1; i++)
-		{
-			int temp = (int)cost.at(i);
-			temp -= 48;
-			value = value * 10 + temp;
-		}
-		price.push_back(value);
-		///////////////////////////////////////////////////////////////////////
+		input.push_back(line);
 	}
 
+	Loaded.close();
+
+	for (int i(0); i < input.size(); i++)
+	{
+		stringstream ss(input.at(i));
+		while (getline(ss, objects, '|'))
+		{
+			separated.push_back(objects);
+		}
+	}
+
+	
+
+	for (int j(0); j < separated.size(); j = j + 4)
+	{
+		for (int k(0); k < 4; k++)
+		{
+			switch (k)
+			{
+			case 0:
+				names.push_back(separated.at(j));
+				break;
+			case 1:
+				descriptions.push_back(separated.at(j + 1));
+				break;
+			case 2:
+				prices.push_back(stoi(separated.at(j + 2)));
+				break;
+			case 3:
+				ratings.push_back(stoi(separated.at(j + 3)));
+				break;
+			}
+		}
+	}
 
 	//add them into store
 
-	for (int i = 0; i < Length; i++)
+	for (int i = 0; i < names.size(); i++)
 	{
-		GetStore().games.addAtEnd(Game(names.at(i), description.at(i), price.at(i), 10));
+		GetStore().games.addAtEnd(Game(names.at(i), descriptions.at(i), prices.at(i), ratings.at(i)));
 	}
 
 
@@ -215,11 +159,11 @@ void Application::Save(List<Game> aList)
 	DataBase.open("Data", ios::trunc);
 
 	//games
-	const int listLength = aList.length();
-	DataBase << listLength << "|";
-	for (int i = 0; i < listLength; i++)
+	
+	DataBase << aList.length() << endl;
+	for (int i = 0; i < aList.length(); i++)
 	{
-		DataBase << aList.getListItem(i).GetName() << "|" << aList.getListItem(i).GetDescription() << "|" << aList.getListItem(i).GetCost() << "|";
+		DataBase << aList.getListItem(i).GetName() << "|" << aList.getListItem(i).GetDescription() << "|" << aList.getListItem(i).GetCost() << endl;
 	}
 
 	//accounts
