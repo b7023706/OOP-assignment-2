@@ -27,27 +27,28 @@ void createHardcodedTestData()
 	app.GetStore().games.addAtEnd(Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	// Create some users
-	Player* pu1 = new Admin("Alice", "password", Date(16, 6, 2018));
-	Player* pu2 = new Player("Bob", "password", Date(19, 9, 2018));
-	Player* pu3 = new Player("Charlie",  "password", Date(24, 9, 2018));
+	Player* u1 = new Admin("Alice", "password", Date(16, 6, 2018));
+	Player* u2 = new Player("Bob", "password", Date(19, 9, 2018));
+	Player* u3 = new Player("Charlie",  "password", Date(24, 9, 2018));
 
 	/*Player* pp1 = dynamic_cast<Player*>(pu1);
 	Player* pp2 = dynamic_cast<Player*>(pu2);
 	Player* pp3 = dynamic_cast<Player*>(pu3);*/
 
 	// With some games in their library
-	pu1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
-	pu1->library.addAtEnd(new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 1)));
-	pu2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 2)));
-	pu2->library.addAtEnd(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
-	pu3->library.addAtEnd(new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 3)));
-	pu3->library.addAtEnd(new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 6)));
-
+	u1->library.push_back(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(0)));
+	u1->library.push_back(new LibraryItem(Date(18, 6, 2018), &app.GetStore().games.getListItem(1)));
+	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(2)));
+	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), &app.GetStore().games.getListItem(3)));
+	u3->library.push_back(new LibraryItem(Date(24, 9, 2018), &app.GetStore().games.getListItem(3)));
+	u3->library.push_back(new LibraryItem(Date(30, 9, 2018), &app.GetStore().games.getListItem(6)));
+	LibraryItem* u3i3 = new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(0));
+	u3->library.push_back(u3i3);
 	// Make an account and attach the users
 	app.accounts.addAtEnd(new Account("alice@shu.com", "password", Date(16, 6, 2018)));
-	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(pu1);
-	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(pu2);
-	app.accounts.getListItem(app.accounts, 0)->users.addAtEnd(pu3);
+	app.accounts.getListItem(0)->users.addAtEnd(u1);
+	app.accounts.getListItem(0)->users.addAtEnd(u2);
+	app.accounts.getListItem(0)->users.addAtEnd(u3);
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
 	app.LoginAccount("alice@shu.ac.uk", "password");

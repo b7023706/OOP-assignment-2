@@ -3,6 +3,7 @@
 #include <string>
 #include "Date.h"
 #include "ListT.h"
+#include "LibraryItem.h"
 
 class User
 {
@@ -10,6 +11,7 @@ class User
 		User(const std::string&, const std::string&, const Date);
 		virtual ~User();
 		const std::string& GetUsername() const;
+		//virtual List<LibraryItem*> getLibrary() = 0;
 	
 	private:
 		std::string username;

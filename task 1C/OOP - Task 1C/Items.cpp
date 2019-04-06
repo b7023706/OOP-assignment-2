@@ -16,8 +16,8 @@ Items::~Items()
 void Items::OutputOptions()
 {
 	List<Game> aList;
-	std::cout << "  -= " << aList.getListItem(app->GetStore().games, ItemOption).GetName() <<" =-\n";
-	std::cout << aList.getListItem(app->GetStore().games, ItemOption).GetDescription() << "\n";
+	std::cout << "  -= " << aList.getListItem(ItemOption).GetName() <<" =-\n";
+	std::cout << aList.getListItem(ItemOption).GetDescription() << "\n";
 
 	if (app->IsUserLoggedIn())
 	{

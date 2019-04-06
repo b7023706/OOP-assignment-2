@@ -10,7 +10,7 @@ class Account
 	public:
 		Account(const std::string&, const std::string&, const Date);
 		~Account();
-		List<User*> users = { };
+		List<Player*> users = { };
 	private:
 		std::string email;
 		std::string password;

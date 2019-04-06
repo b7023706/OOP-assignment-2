@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "LibraryItem.h"
+#include <vector>
 #include "User.h"
 
 class Player : public User
@@ -9,7 +9,8 @@ class Player : public User
 	public:
 		Player(const std::string&, const std::string&, const Date);
 		~Player();
-		List<LibraryItem*> library = { };
-		User* user;
+		vector<LibraryItem*> library;
+		//User* user;
+		//virtual List<LibraryItem*> getLibrary() override;
 	private:
 };

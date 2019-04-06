@@ -13,6 +13,10 @@ void ProfilePage::OutputOptions()
 	//	// adding 1 so the display is nicer for the user
 	//	Option(i + 1, pp->library.getListItem(pp->library, i)->GetGame()->GetName());
 	//}
+	for (int i(0); i < app->GetCurrentUser()->library.size() - 1; i++)
+	{
+		app->GetCurrentUser()->library.at(i)->GetGame()->GetName();
+	}
 }
 
 bool ProfilePage::HandleChoice(char choice)
@@ -22,3 +26,4 @@ bool ProfilePage::HandleChoice(char choice)
 	// this reverses the + 1 above and lets us do the range check below
 	return false;
 }
+
