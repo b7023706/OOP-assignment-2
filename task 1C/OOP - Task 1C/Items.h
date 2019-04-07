@@ -5,12 +5,15 @@
 class Items : public Menu
 {
 public :
-	Items(int, Application*);
+	Items(int, Utils, Application*, List<Game>);
 	int ItemOption;
 	~Items();
 	
-	void OutputOptions() ;
+	void OutputOptions();
 	bool HandleChoice(char choice);
 private:
+	std::string title;
+	std::string upperTitle;
+	List<Game> list;
 	//Game getListItem(List<Game>, int);
 };

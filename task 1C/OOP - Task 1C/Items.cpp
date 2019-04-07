@@ -1,6 +1,6 @@
 #include "Items.h"
 
-Items::Items(int index, Application * app) : Menu("GAME DESCRIPTION", app)
+Items::Items(int index, Utils u, Application * app, List<Game> list) : list(list), Menu(u.ToUpperFor(list.getListItem(index).GetName()), app)
 {
 	ItemOption = index;
 	Paint();
@@ -15,16 +15,14 @@ Items::~Items()
 
 void Items::OutputOptions()
 {
-	List<Game> aList;
-	std::cout << "  -= " << aList.getListItem(app->GetStore().games, ItemOption).GetName() <<" =-\n";
-	std::cout << aList.getListItem(app->GetStore().games, ItemOption).GetDescription() << "\n";
-	std::cout << aList.getListItem(app->GetStore().games, ItemOption).GetCost() << "\n";
-	
+	std::cout << "  " << list.getListItem(ItemOption).GetDescription() << "\n";
+	std::cout << "  " << list.getListItem(ItemOption).GetCost() << "\n";
+
 
 	if (app->IsUserLoggedIn())
 	{
 		std::cout << "You (" << app->GetCurrentUser()->GetUsername() << ") have " << app->GetCurrentUser()->GetCredits() << " credits\n";
-
+		
 		Option('P', "Buy");
 	}
 	
@@ -34,14 +32,35 @@ bool Items::HandleChoice(char choice)
 {
 	List<Game> aList;
 
+	bool gotGame = false;
+
 	switch (choice)
 	{
 	case 'P': if (app->IsUserLoggedIn()) 
 		{
-		if (app->GetCurrentUser()->GetCredits() >= aList.getListItem(app->GetStore().games, ItemOption).GetCost())
+		if (app->GetCurrentUser()->GetCredits() >= list.getListItem(ItemOption).GetCost())
 		{
-			app->GetCurrentUser()->SetCredits(aList.getListItem(app->GetStore().games, ItemOption).GetCost());
-			Question("You have been billed");
+			
+			for (int i(0); i < app->GetCurrentUser()->library.length(); i++)
+			{
+				if (app->GetCurrentUser()->library.getListItem(i)->GetGame().GetName() == list.getListItem(ItemOption).GetName())
+				{
+					gotGame = true;
+				}
+			}
+
+			if (gotGame == false)
+			{
+				Question("You have been billed");
+				app->GetCurrentUser()->SetCredits(list.getListItem(ItemOption).GetCost());
+				app->GetCurrentUser()->library.addAtEnd(new LibraryItem(Date(), app->GetStore().games.getListItem(ItemOption), 0.0f));
+			}
+			else
+			{
+				Question("you already own this");
+			}
+			
+
 			//u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
 			//add to account
 		}
@@ -50,16 +69,3 @@ bool Items::HandleChoice(char choice)
 
 	return false;
 }
-
-//Game Items::getListItem(List<Game> gameList, int count)
-//{
-//	if (count == 0)
-//	{
-//		return gameList.first();
-//	}
-//	else
-//	{
-//		count--;
-//		return getListItem(gameList.tail(), count);
-//	}
-//}

@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(const std::string& name, const std::string& desc, int cost, int rating) : name(name), description(desc), cost(cost), ageRating(rating)
+Game::Game(const std::string& name, const std::string& desc, int cost, int rating) : name(name), description(desc), cost(cost), rating(rating)
 {
 
 }
@@ -22,4 +22,9 @@ const std::string& Game::GetDescription() const
 int Game::GetCost() const
 {
 	return cost;
+}
+
+int Game::GetRating() const
+{
+	return rating;
 }

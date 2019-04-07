@@ -2,7 +2,7 @@
 
 LoginAccountMenu::LoginAccountMenu(const std::string& title, Application * app) : Menu(title, app)
 {
-	Paint(); // required in constructor
+	Paint(); 
 }
 
 void LoginAccountMenu::OutputOptions()
@@ -10,7 +10,7 @@ void LoginAccountMenu::OutputOptions()
 
 	for (int i = 0; i < app->accounts.length(); i++)
 	{
-		std::cout << "  " << (i + 1) << ") " << app->accounts.getListItem(app->accounts, i)->GetEmail() << "\n";
+		std::cout << "  " << (i + 1) << ") " << app->accounts.getListItem(i)->GetEmail() << "\n";
 	}
 
 }
@@ -24,7 +24,7 @@ bool LoginAccountMenu::HandleChoice(char choice)
 
 		if (index >= 0 && index < 1)
 		{
-			std::string email = app->accounts.getListItem(app->accounts, index)->GetEmail();
+			std::string email = app->accounts.getListItem(index)->GetEmail();
 
 			std::cout << "  Enter password for " << email << ": ";
 			if (app->LoginAccount(email, Utils::GetLineFromUser()))

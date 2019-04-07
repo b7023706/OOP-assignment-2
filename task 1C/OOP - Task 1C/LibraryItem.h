@@ -6,9 +6,14 @@
 class LibraryItem
 {
 	public:
-		LibraryItem(const Date, Game*);
+		LibraryItem(const Date, Game, float);
 		~LibraryItem();
+
+		const Game GetGame();
+		const float GetPlayTime() const;
+
 	private:
-		const Game *game;
+		const Game game;
 		const Date purchased;
+		float playTime;
 };

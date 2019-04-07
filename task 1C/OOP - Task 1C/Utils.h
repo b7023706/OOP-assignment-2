@@ -11,6 +11,7 @@ class Utils
     static std::string GetLineFromUser();			// might need to make it G 
     static char GetCharFromUser();
 	List<Game> SearchGame(Application*, List<Game>);
+	std::string ToUpperFor(std::string name);
+	std::string ToUpperRec(std::string name, std::string, int);
+	int getRandomTime();
 };
-
-// TODO: 2 versions of ToUpper

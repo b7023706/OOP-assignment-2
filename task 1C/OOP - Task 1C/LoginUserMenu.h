@@ -2,6 +2,7 @@
 
 #include "Menu.h"
 
+
 class LoginUserMenu : public Menu
 {
 public:
