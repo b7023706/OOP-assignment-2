@@ -1,5 +1,6 @@
 #include "MainMenu.h"
 
+
 MainMenu::MainMenu(const std::string& title, Application * app) : Menu(title, app)
 {
 	Paint(); // required in constructor
@@ -52,10 +53,7 @@ bool MainMenu::HandleChoice(char choice)
 		{
 			if (app->IsUserLoggedIn())
 			{
-				int amount = app->GetCurrentUser()->GetCredits();
-				string cred = "You have credits: ";
-				cred += amount;
-				Question(cred);
+				ProfilePage("PROFILE", app);
 				// this needs to go to a profile page - similar to StoreMenu
 				// notice the if - this only works if somebody is logged in
 			}

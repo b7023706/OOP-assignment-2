@@ -38,7 +38,7 @@ Account* Application::GetCurrentAccount() const
 	return currentAccount;
 }
 
-User* Application::GetCurrentUser() const
+Player* Application::GetCurrentUser() const
 {
 	return currentUser;
 }
@@ -160,10 +160,10 @@ void Application::Save(List<Game> aList)
 
 	//games
 	
-	DataBase << aList.length() << endl;
+	//DataBase << aList.length() << endl;
 	for (int i = 0; i < aList.length(); i++)
 	{
-		DataBase << aList.getListItem(i).GetName() << "|" << aList.getListItem(i).GetDescription() << "|" << aList.getListItem(i).GetCost() << endl;
+		DataBase << aList.getListItem(i).GetName() << "|" << aList.getListItem(i).GetDescription() << "|" << aList.getListItem(i).GetCost() << "|" << aList.getListItem(i).GetRating() << "|" << endl;
 	}
 
 	//accounts

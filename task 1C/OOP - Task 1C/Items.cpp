@@ -1,6 +1,6 @@
 #include "Items.h"
 
-Items::Items(int index, Application * app,List<Game> list) : Menu("GAME DESCRIPTION", app), list(list)
+Items::Items(int index, Utils u, Application * app, List<Game> list) : list(list), Menu(u.ToUpperFor(list.getListItem(index).GetName()), app)
 {
 	ItemOption = index;
 	Paint();
@@ -15,9 +15,8 @@ Items::~Items()
 
 void Items::OutputOptions()
 {
-	std::cout << "  -= " << list.getListItem(ItemOption).GetName() <<" =-\n";
-	std::cout << list.getListItem(ItemOption).GetDescription() << "\n";
-	std::cout << list.getListItem(ItemOption).GetCost() << "\n";
+	std::cout << "  " << list.getListItem(ItemOption).GetDescription() << "\n";
+	std::cout << "  " << list.getListItem(ItemOption).GetCost() << "\n";
 	
 
 	if (app->IsUserLoggedIn())

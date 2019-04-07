@@ -25,7 +25,8 @@ bool Search::HandleChoice(char choice)
 	
 	if (index >= 0 && index < sr.length())
 	{
-		Items(index, app, sr);
+		Utils u;
+		Items(index, u, app, sr);
 		
 	}
 

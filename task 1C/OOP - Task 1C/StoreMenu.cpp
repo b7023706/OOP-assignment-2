@@ -23,14 +23,14 @@ bool StoreMenu::HandleChoice(char choice)
 	// this puts '1' as 0, '2' as 1, '3' as 2, '4' as 3, etc.
 	// this reverses the + 1 above and lets us do the range check below
 	int index = choice - '1';
-
+	Utils u;
 	if (index >= 0 && index <  app->GetStore().games.length())
 	{		
-		Items(index, app, app->GetStore().games);
+		Items(index, u, app, app->GetStore().games);
 	}
 	else if (toupper(choice) == 'S')
 	{
-		Utils u;
+		
 		searchResults = u.SearchGame(app, app->GetStore().games);
 		Search("SEARCH RESULTS", app, searchResults);
 	}
