@@ -30,6 +30,8 @@ void Items::OutputOptions()
 
 bool Items::HandleChoice(char choice)
 {
+	Player* pp = dynamic_cast<Player*>(app->GetCurrentUser());
+
 	List<Game> aList;
 
 	bool gotGame = false;
@@ -41,9 +43,9 @@ bool Items::HandleChoice(char choice)
 		if (app->GetCurrentUser()->GetCredits() >= list.getListItem(ItemOption).GetCost())
 		{
 			
-			for (int i(0); i < app->GetCurrentUser()->library.size(); i++)
+			for (int i(0); i < pp->library.size(); i++)
 			{
-				if (app->GetCurrentUser()->library.at(i)->GetGame()->GetName() == list.getListItem(ItemOption).GetName())
+				if (pp->library.at(i)->GetGame()->GetName() == list.getListItem(ItemOption).GetName())
 				{
 					gotGame = true;
 				}
@@ -53,16 +55,13 @@ bool Items::HandleChoice(char choice)
 			{
 				Question("You have been billed");
 				app->GetCurrentUser()->SetCredits(list.getListItem(ItemOption).GetCost());
-				app->GetCurrentUser()->library.push_back(new LibraryItem(Date(), app->GetStore().games.getListItem(ItemOption), 0.0f));
+				pp->library.push_back(new LibraryItem(Date(), app->GetStore().games.getListItem(ItemOption), 0.0f));
 			}
 			else
 			{
 				Question("you already own this");
 			}
-			
-
-			//u1->library.addAtEnd(new LibraryItem(Date(17, 6, 2018), &app.GetStore().games.getListItem(app.GetStore().games, 0)));
-			//add to account
+		
 		}
 		} break;
 	}

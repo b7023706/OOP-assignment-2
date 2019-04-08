@@ -13,7 +13,7 @@ class Application
 		bool IsAccountLoggedIn() const;
 		bool IsUserLoggedIn() const;
 		Account* GetCurrentAccount() const;
-		Player* GetCurrentUser() const;
+		User* GetCurrentUser() const;
 
 		Store& GetStore();
 
@@ -29,7 +29,7 @@ class Application
 	private:
 		Store store;
 		Account* currentAccount;
-		Player* currentUser;
+		User* currentUser;
 
 		bool userIsLoggedIn_ = true;
 

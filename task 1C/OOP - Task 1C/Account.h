@@ -12,7 +12,7 @@ class Account
 		~Account();
 		const std::string& GetEmail() const;
 		const std::string& GetPassword() const;
-		List<Player*> users = { };
+		List<User*> users = { };
 	private:
 		std::string email;
 		std::string password;

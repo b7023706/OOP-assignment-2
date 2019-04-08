@@ -20,18 +20,33 @@ void main()
 	// TODO: Remove call to dummy data, instead use Load and Save
 	//createHardcodedTestData();
 	// Create some users
-	Player* u1 = new Admin("Alice", "password", Date(16, 6, 2018), 1000004);
-	Player* u2 = new Player("Bob", "password", Date(19, 9, 2018), 1000);
-	Player* u3 = new Player("Charlie", "password", Date(24, 9, 2018), 1204);
+	User* u1 = new Admin("Alice", "password", Date(16, 6, 2018), 1000004);
+	User* u2 = new Player("Bob", "password", Date(19, 9, 2018), 1000);
+	User* u3 = new Player("Charlie", "password", Date(24, 9, 2018), 1204);
+
+	
 
 	// With some games in their library
 
-	u1->library.push_back(new LibraryItem(Date(17, 6, 2018), app.GetStore().games.getListItem(0), 0.0f));
-	u1->library.push_back(new LibraryItem(Date(18, 6, 2018), app.GetStore().games.getListItem(1), 0.0f));
-	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(2), 0.0f));
-	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(3), 0.0f));
-	u3->library.push_back(new LibraryItem(Date(24, 9, 2018), app.GetStore().games.getListItem(3), 0.0f));
-	u3->library.push_back(new LibraryItem(Date(30, 9, 2018), app.GetStore().games.getListItem(6), 0.0f));
+	Player* pp = dynamic_cast<Player*>(u1);
+	if (pp != nullptr)
+	{
+		pp->library.push_back(new LibraryItem(Date(17, 6, 2018), app.GetStore().games.getListItem(0), 0.0f));
+		pp->library.push_back(new LibraryItem(Date(18, 6, 2018), app.GetStore().games.getListItem(1), 0.0f));
+
+		pp = dynamic_cast<Player*>(u2);
+		if (pp != nullptr)
+		{
+			pp->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(2), 0.0f));
+			pp->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(3), 0.0f));
+		}
+		pp = dynamic_cast<Player*>(u3);
+		if (pp != nullptr)
+		{
+			pp->library.push_back(new LibraryItem(Date(24, 9, 2018), app.GetStore().games.getListItem(3), 0.0f));
+			pp->library.push_back(new LibraryItem(Date(30, 9, 2018), app.GetStore().games.getListItem(6), 0.0f));
+		}
+	}
 
 	// Make an account and attach the users
 	app.accounts.addAtEnd(new Account("alice@shu.com", "password", Date(16, 6, 2018)));

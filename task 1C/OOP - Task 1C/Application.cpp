@@ -33,7 +33,7 @@ bool Application::IsAccountLoggedIn() const
 	return currentAccount != nullptr;
 }
 
-Player* Application::GetCurrentUser() const
+User* Application::GetCurrentUser() const
 {
 	return currentUser;
 }
