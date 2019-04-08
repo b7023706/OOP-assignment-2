@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+//#include <algorithm>
 #include "Application.h"
 #include "ListT.h"
 
@@ -13,5 +14,6 @@ class Utils
 	List<Game> SearchGame(Application*, List<Game>);
 	std::string ToUpperFor(std::string name);
 	std::string ToUpperRec(std::string name, std::string, int);
+	/*std::vector<LibraryItem> SortByName(Application* app);*/
 	int getRandomTime();
 };

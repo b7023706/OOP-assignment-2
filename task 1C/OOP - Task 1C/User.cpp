@@ -25,5 +25,8 @@ int User::GetCredits()
 
 void User::SetCredits(int cost)
 {
-	credits -= cost;
+	if (cost != NULL)
+	{
+		credits -= cost;
+	}
 }

@@ -1,8 +1,10 @@
 #pragma once
 #include "Menu.h"
 #include "Items.h"
+#include "pred.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 
 class ProfilePage : public Menu
 {

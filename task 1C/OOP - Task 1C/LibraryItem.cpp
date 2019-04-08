@@ -13,9 +13,13 @@ const Game* LibraryItem::GetGame()
 	return &game;
 }
 
+const Date* LibraryItem::GetDate()
+{
+	return &purchased;
+}
+
 const string LibraryItem::GetPlayTime() const
 {
-	int intPlayTime;
 	string outputPlayTime;
 	stringstream ssTemp;
 	if (playTime < 60)

@@ -12,6 +12,7 @@ class LibraryItem
 		const Game* GetGame();
 		const string GetPlayTime() const;
 		void SetPlayTime(float);
+		const Date* GetDate();
 
 	private:
 		const Game game;

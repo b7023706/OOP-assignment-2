@@ -8,6 +8,6 @@ Player::~Player()
 {
 	for (int i = 0; i < 2; ++i)
 	{
-		delete library.getListItem(i);
+		delete library.at(i);
 	}
 }

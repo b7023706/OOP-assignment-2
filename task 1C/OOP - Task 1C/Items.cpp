@@ -41,9 +41,9 @@ bool Items::HandleChoice(char choice)
 		if (app->GetCurrentUser()->GetCredits() >= list.getListItem(ItemOption).GetCost())
 		{
 			
-			for (int i(0); i < app->GetCurrentUser()->library.length(); i++)
+			for (int i(0); i < app->GetCurrentUser()->library.size(); i++)
 			{
-				if (app->GetCurrentUser()->library.getListItem(i)->GetGame()->GetName() == list.getListItem(ItemOption).GetName())
+				if (app->GetCurrentUser()->library.at(i)->GetGame()->GetName() == list.getListItem(ItemOption).GetName())
 				{
 					gotGame = true;
 				}
@@ -53,7 +53,7 @@ bool Items::HandleChoice(char choice)
 			{
 				Question("You have been billed");
 				app->GetCurrentUser()->SetCredits(list.getListItem(ItemOption).GetCost());
-				app->GetCurrentUser()->library.addAtEnd(new LibraryItem(Date(), app->GetStore().games.getListItem(ItemOption), 0.0f));
+				app->GetCurrentUser()->library.push_back(new LibraryItem(Date(), app->GetStore().games.getListItem(ItemOption), 0.0f));
 			}
 			else
 			{
