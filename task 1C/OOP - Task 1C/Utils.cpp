@@ -64,6 +64,22 @@ List<Game> Utils::SearchGame(Application* app, List<Game> aList, int choice)
 
 		}
 	}
+	else if (choice == 2 || choice == 3)
+	{
+		for (int i(0); i < aList.length(); i++)
+		{
+			if (choice == 2)
+			{
+				if (aList.getListItem(i).GetCost() > lowerRange && aList.getListItem(i).GetCost() < upperRange)
+					searchList.addAtEnd(aList.getListItem(i));
+			}
+			if (choice == 3)
+			{
+				if (aList.getListItem(i).GetRating() > lowerRange && aList.getListItem(i).GetRating() < upperRange)
+					searchList.addAtEnd(aList.getListItem(i));
+			}
+		}
+	}
 	return searchList;
 }
 
