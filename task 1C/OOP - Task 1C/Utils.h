@@ -8,9 +8,10 @@
 class Utils
 {
   public:
-    static std::string GetLineFromUser();			// might need to make it G 
+    static std::string GetLineFromUser();
     static char GetCharFromUser();
-	List<Game> SearchGame(Application*, List<Game>);
+	List<Game> SearchGame(Application*, List<Game>, int);
+
 	std::string ToUpperFor(std::string name);
 	std::string ToUpperRec(std::string name, std::string, int);
 	int getRandomTime();

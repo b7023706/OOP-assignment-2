@@ -30,7 +30,7 @@ bool StoreMenu::HandleChoice(char choice)
 	}
 	else if (toupper(choice) == 'S')
 	{
-		searchResults = u.SearchGame(app, app->GetStore().games);
+		searchResults = u.SearchGame(app, app->GetStore().games, stoi(Question("Search By 1) Name, 2) Price, 3) Rating")));
 		Search("SEARCH RESULTS", app, searchResults);
 	}
 

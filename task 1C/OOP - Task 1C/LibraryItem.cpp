@@ -8,9 +8,9 @@ LibraryItem::~LibraryItem()
 {
 }
 
-const Game LibraryItem::GetGame()
+const Game* LibraryItem::GetGame()
 {
-	return game;
+	return &game;
 }
 
 const float LibraryItem::GetPlayTime() const

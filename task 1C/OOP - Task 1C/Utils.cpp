@@ -12,39 +12,57 @@ char Utils::GetCharFromUser()
     return toupper(GetLineFromUser()[0]);
 }
 
-List<Game> Utils::SearchGame(Application* app, List<Game> aList)
+List<Game> Utils::SearchGame(Application* app, List<Game> aList, int choice)
 {
 	std::string input;
-	input = GetLineFromUser();
+	int lowerRange;
+	int upperRange;
+	
+	if (choice == 2 || choice == 3)
+	{
+		std::cout << "\nEnter your lower Range: ";
+		lowerRange = stoi(GetLineFromUser());
+		std::cout << "\n\nEnter your upper Range: ";
+		upperRange = stoi(GetLineFromUser());
+	}
+	else
+	{
+		std::cout << "\nEnter your search: ";
+		input = GetLineFromUser();
+	}
 	bool validSearch = false;
-	int failCount = 0;
+	
 	List<Game> searchList;
 
-	for (int i = 0; i < app->GetStore().games.length(); i++)
+	if (choice == 1)
 	{
-		string name = aList.getListItem(i).GetName();
-		for (int n(0); n < name.length(); n++)
+		for (int i = 0; i < app->GetStore().games.length(); i++)
 		{
-			if (toupper(name.substr(n, n + 1)[0]) == toupper(input.substr(0, 1)[0]))
+			int failCount = 0;
+			string name = aList.getListItem(i).GetName();
+			for (int n(0); n < name.length(); n++)
 			{
-				validSearch = true;
-				failCount = n;
-				n = name.length();
+				if (toupper(name.substr(n, n + 1)[0]) == toupper(input.substr(0, 1)[0]))
+				{
+					validSearch = true;
+					failCount = n;
+					n = name.length();
+				}
 			}
-		}
-		for (int k = 0; k < input.length(); k++)
-		{
-			if (toupper(name.substr(failCount + k, failCount + k + 1)[0]) != toupper(input.substr(k, k + 1)[0]))
+			for (int k = 0; k < input.length(); k++)
 			{
-				validSearch = false;
+				if (toupper(name.substr(failCount + k, failCount + k + 1)[0]) != toupper(input.substr(k, k + 1)[0]))
+				{
+					validSearch = false;
+				}
 			}
-		}
 
-		if (validSearch == true)
-		{
-			searchList.addAtEnd(aList.getListItem(i));
-		}
+			if (validSearch == true)
+			{
+				searchList.addAtEnd(aList.getListItem(i));
+			}
 
+		}
 	}
 	return searchList;
 }
