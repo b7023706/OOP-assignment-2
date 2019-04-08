@@ -11,6 +11,7 @@ void ProfilePage::OutputOptions()
 	{
 		Option(i + 1, app->GetCurrentUser()->library.at(i)->GetGame()->GetName());
 		std::cout << "   Play Time: " + app->GetCurrentUser()->library.at(i)->GetPlayTime() + "h" << "\n\n";
+		
 	}
 	Option('N', "Sort By Game Name");
 	Option('D', "Sort By Date of Purchase");
@@ -25,7 +26,7 @@ void ProfilePage::OutputOptions()
 bool ProfilePage::HandleChoice(char choice)
 {
 	int index = choice - '1';
-
+	bool gameRating; 
 	if (index >= 0 && index < app->GetCurrentUser()->library.size())
 	{
 		int temp = stoi(Question("1) Play Game, 2) review the game"));
@@ -38,10 +39,10 @@ bool ProfilePage::HandleChoice(char choice)
 		else if (temp == 2) {
 			int temp = stoi(Question("1) Like, 2) Disklike"));
 			if (temp == 1) {
-
+				app->GetStore().games.getListItem(index).SetReview(gameRating = true);
 			}
 			else if(temp == 2){
-
+				app->GetStore().games.getListItem(index).SetReview(gameRating = false);
 			}
 		}
 

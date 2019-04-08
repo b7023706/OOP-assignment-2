@@ -23,8 +23,38 @@ int Game::GetCost() const
 {
 	return cost;
 }
-
-int Game::GetRating() const
+std::string Game::GetRating() const
 {
-	return rating;
+	//std::string outputReviewRating;
+	std::stringstream ss;
+
+	//return outputReviewRating = std::to_string(static_cast<int>(reviewRating));
+	//ss << static_cast<int>(reviewRating);
+	//return outputReviewRating;
+	return std::to_string(reviewRating);
 }
+
+
+void Game::SetReview(bool gameRating)
+{
+	const int oneHundered(100);
+
+
+
+	if (gameRating == true)
+	{
+		like += 1;
+	}
+	if (gameRating == false)
+	{
+		dislike += 1;
+	}
+
+	reviewRating = like / (like + dislike) * 100;
+}
+
+//const std::string Game::GetReview() const
+//{
+//	 //= ss.str();
+//
+//}

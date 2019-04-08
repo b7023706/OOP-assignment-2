@@ -26,13 +26,13 @@ void main()
 
 	// With some games in their library
 
-	u1->library.push_back(new LibraryItem(Date(17, 6, 2018), app.GetStore().games.getListItem(0), 0.0f));
-	u1->library.push_back(new LibraryItem(Date(18, 6, 2018), app.GetStore().games.getListItem(1), 0.0f));
-	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(2), 0.0f));
-	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(3), 0.0f));
-	u3->library.push_back(new LibraryItem(Date(24, 9, 2018), app.GetStore().games.getListItem(3), 0.0f));
-	u3->library.push_back(new LibraryItem(Date(30, 9, 2018), app.GetStore().games.getListItem(6), 0.0f));
-
+	u1->library.push_back(new LibraryItem(Date(17, 6, 2018), app.GetStore().games.getListItem(0), 0.0f, 0));
+	u1->library.push_back(new LibraryItem(Date(18, 6, 2018), app.GetStore().games.getListItem(1), 0.0f, 0));
+	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(2), 0.0f, 0));
+	u2->library.push_back(new LibraryItem(Date(19, 9, 2018), app.GetStore().games.getListItem(3), 0.0f, 0));
+	u3->library.push_back(new LibraryItem(Date(24, 9, 2018), app.GetStore().games.getListItem(3), 0.0f, 0));
+	u3->library.push_back(new LibraryItem(Date(30, 9, 2018), app.GetStore().games.getListItem(6), 0.0f, 0));
+																									
 	// Make an account and attach the users
 	app.accounts.addAtEnd(new Account("alice@shu.com", "password", Date(16, 6, 2018)));
 	app.accounts.getListItem(0)->users.addAtEnd(u1);
