@@ -53,7 +53,7 @@ bool Items::HandleChoice(char choice)
 			{
 				Question("You have been billed");
 				app->GetCurrentUser()->SetCredits(list.getListItem(ItemOption).GetCost());
-				app->GetCurrentUser()->library.push_back(new LibraryItem(Date(), app->GetStore().games.getListItem(ItemOption), 0.0f));
+				app->GetCurrentUser()->library.push_back(new LibraryItem(Date(), app->GetStore().games.getListItem(ItemOption), 0.0f, 0));
 			}
 			else
 			{

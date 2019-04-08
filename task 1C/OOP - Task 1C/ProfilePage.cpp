@@ -38,10 +38,12 @@ bool ProfilePage::HandleChoice(char choice)
 		else if (temp == 2) {
 			int temp = stoi(Question("1) Like, 2) Disklike"));
 			if (temp == 1) {
-
+				bool gameRating = true;
+				app->GetStore().games.getListItem(index).SetReview(gameRating = true);
 			}
 			else if(temp == 2){
-
+				bool gameRating = false;
+				app->GetStore().games.getListItem(index).SetReview(gameRating = false);
 			}
 		}
 

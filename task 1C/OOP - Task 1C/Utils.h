@@ -16,4 +16,5 @@ class Utils
 	std::string ToUpperRec(std::string name, std::string, int);
 	/*std::vector<LibraryItem> SortByName(Application* app);*/
 	int getRandomTime();
+
 };
