@@ -9,7 +9,9 @@ void ProfilePage::OutputOptions()
 {
 	for (int i(0); i < app->GetCurrentUser()->library.length(); i++)
 	{
-		Option(i + 1, app->GetCurrentUser()->library.getListItem(i)->GetGame()->GetName() + "   Play Time: " + to_string(app->GetCurrentUser()->library.getListItem(i)->GetPlayTime()) + "h");	}
+		Option(i + 1, app->GetCurrentUser()->library.getListItem(i)->GetGame()->GetName());
+		std::cout << "   Play Time: " + app->GetCurrentUser()->library.getListItem(i)->GetPlayTime() + "h" << "\n\n";
+	}
 	Option('C', "Add Credits");
 	std::cout << "  " << "your credit amount is :" << app->GetCurrentUser()->GetCredits();
 	

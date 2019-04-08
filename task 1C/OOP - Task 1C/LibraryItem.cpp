@@ -13,23 +13,27 @@ const Game* LibraryItem::GetGame()
 	return &game;
 }
 
-const float LibraryItem::GetPlayTime() const
+const string LibraryItem::GetPlayTime() const
 {
+	int intPlayTime;
+	string outputPlayTime;
+	stringstream ssTemp;
 	if (playTime < 60)
 	{
-		return playTime;
+		return outputPlayTime = to_string( static_cast<int>(playTime));
 	}
 	else if (playTime > 60 && playTime < 300)
 	{
-		return playTime / 60;
+		ssTemp << setprecision(2) << playTime / 60;
+		return ssTemp.str();
 	}
 	else
 	{
-		return playTime;
+		return outputPlayTime = to_string(static_cast<int>(floor(playTime / 60)));
 	}
 }
 
 void LibraryItem::SetPlayTime(float randomTime)
 {
-	playTime = randomTime + GetPlayTime();
+	playTime += randomTime;
 }

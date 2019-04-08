@@ -10,7 +10,7 @@ class LibraryItem
 		~LibraryItem();
 
 		const Game* GetGame();
-		const float GetPlayTime() const;
+		const string GetPlayTime() const;
 		void SetPlayTime(float);
 
 	private:
