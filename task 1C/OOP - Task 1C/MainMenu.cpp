@@ -2,7 +2,7 @@
 
 MainMenu::MainMenu(const std::string& title, Application * app) : Menu(title, app)
 {
-	Paint(); // required in constructor
+	Paint();
 }
 
 void MainMenu::OutputOptions()
@@ -45,14 +45,11 @@ bool MainMenu::HandleChoice(char choice)
 				std::string answer = Question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
-					app->LogoutUser();							//come back too 
+					app->LogoutUser();
 				}
 			}
 			else
 			{
-				// this would need to go to a LoginMenu - similar to StoreMenu
-				// instead we just set logged in to true on the main app object
-
 				LoginUserMenu("LOGIN", app);
 			}
 		} break;
@@ -61,8 +58,6 @@ bool MainMenu::HandleChoice(char choice)
 			if (app->IsUserLoggedIn())
 			{
 				ProfilePage("PROFILE", app);
-				// this needs to go to a profile page - similar to StoreMenu
-				// notice the if - this only works if somebody is logged in
 			}
 		} break;
 		case'E':
@@ -71,7 +66,8 @@ bool MainMenu::HandleChoice(char choice)
 				std::string answer = Question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
-					app->LogoutAccount();							//come back too 
+					app->LogoutUser();
+					app->LogoutAccount();
 				}
 			}
 			else

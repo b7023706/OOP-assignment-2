@@ -4,7 +4,7 @@
 
 Search::Search(const std::string& title, Application * app, List<Game> searchResults) : Menu(title, app), sr(searchResults)
 {
-	Paint(); // required in constructor
+	Paint();
 }
 
 void Search::OutputOptions()

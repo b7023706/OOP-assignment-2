@@ -17,12 +17,7 @@ public:
 
 	void Paint();
 
-	// Use this function to output all the options specific to your menu
 	virtual void OutputOptions() = 0;
-
-	// Use this function to handle the possible choices from your menu
-	// Returning true means you are ready to go back to the previous menu
-	// Returning false means you will stay on the same menu
 	virtual bool HandleChoice(char) = 0;
 
 protected:

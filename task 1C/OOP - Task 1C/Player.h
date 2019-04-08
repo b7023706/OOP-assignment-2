@@ -11,5 +11,8 @@ class Player : public User
 		Player(const std::string&, const std::string&, const Date, int);
 		~Player();
 		vector<LibraryItem*> library;
+		int GetCredits();
+		void SetCredits(int);
 	private:
+		int credits;
 };

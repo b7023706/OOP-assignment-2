@@ -7,15 +7,13 @@
 class User
 {
 	public:
-		User(const std::string&, const std::string&, const Date, int);
+		User(const std::string&, const std::string&, const Date);
 		virtual ~User();
 		const std::string& GetUsername() const;
 		const std::string& GetPassword() const;
-		int GetCredits();
-		void SetCredits(int);
+		
 	private:
 		std::string username;
 		std::string password;
-		int credits;
 		Date created;
 };

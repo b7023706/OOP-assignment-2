@@ -114,11 +114,3 @@ int Utils::getRandomTime()
 {
 	return rand() % 50 + 10;
 }
-
-//vector<LibraryItem> Utils::SortByName(Application* app)
-//{
-//	std::vector<std::string> LibraryItem;
-//	std::sort(LibraryItem.begin(), LibraryItem.end());
-//
-//
-//}

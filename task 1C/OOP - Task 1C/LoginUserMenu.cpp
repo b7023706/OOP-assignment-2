@@ -2,13 +2,13 @@
 
 LoginUserMenu::LoginUserMenu(const std::string& title, Application * app) : Menu(title, app)
 {
-	Paint(); // required in constructor
+	Paint();
 }
 
 void LoginUserMenu::OutputOptions()
 {
 
-	for (int i = 0; i < 3; i++) // TODO: Hardcoded, change when using List<T>
+	for (int i = 0; i < app->GetCurrentAccount()->users.length(); i++)
 	{
 		std::cout << "  " << (i + 1) << ") " << app->accounts.getListItem(0)->users.getListItem(i)->GetUsername() << "\n";
 	}
@@ -22,7 +22,7 @@ bool LoginUserMenu::HandleChoice(char choice)
 	default: {
 		int index = choice - '1';
 
-		if (index >= 0 && index < 3) // TODO: Hardcoded, change when using List<T>
+		if (index >= 0 && index < app->GetCurrentAccount()->users.length())
 		{
 			std::string username = app->GetCurrentAccount()->users.getListItem(index)->GetUsername();
 
@@ -30,6 +30,10 @@ bool LoginUserMenu::HandleChoice(char choice)
 			if (app->LoginUser(username, Utils::GetLineFromUser()))
 			{
 				return true;
+			}
+			else
+			{
+				Question("Incorrect Password");
 			}
 			
 		}

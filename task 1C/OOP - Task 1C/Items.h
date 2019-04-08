@@ -15,5 +15,4 @@ private:
 	std::string title;
 	std::string upperTitle;
 	List<Game> list;
-	//Game getListItem(List<Game>, int);
 };

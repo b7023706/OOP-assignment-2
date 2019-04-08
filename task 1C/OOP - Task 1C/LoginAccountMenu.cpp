@@ -22,7 +22,7 @@ bool LoginAccountMenu::HandleChoice(char choice)
 	default: {
 		int index = choice - '1';
 
-		if (index >= 0 && index < 1)
+		if (index >= 0 && index < app->accounts.length())
 		{
 			std::string email = app->accounts.getListItem(index)->GetEmail();
 
@@ -30,6 +30,10 @@ bool LoginAccountMenu::HandleChoice(char choice)
 			if (app->LoginAccount(email, Utils::GetLineFromUser()))
 			{
 				return true;
+			}
+			else
+			{
+				Question("Incorrect Password");
 			}
 		}
 	} break;

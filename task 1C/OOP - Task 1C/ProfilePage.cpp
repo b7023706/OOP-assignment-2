@@ -16,7 +16,7 @@ void ProfilePage::OutputOptions()
 	Option('N', "Sort By Game Name");
 	Option('D', "Sort By Date of Purchase");
 	Option('C', "Add Credits");
-	std::cout << "\n  " << "your credit amount is :" << app->GetCurrentUser()->GetCredits() << "\n";
+	std::cout << "\n  " << "your credit amount is :" << pp->GetCredits() << "\n";
 	
 	
 
@@ -45,7 +45,7 @@ bool ProfilePage::HandleChoice(char choice)
 			temp = "0";
 		}
 		
-		app->GetCurrentUser()->SetCredits(-stoi(temp));
+		pp->SetCredits(-stoi(temp));
 	}
 	if (toupper(choice) == 'N')
 	{

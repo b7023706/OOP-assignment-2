@@ -9,16 +9,12 @@
 #include "MainMenu.h"
 #include "Date.h"
 
-
-// TODO: Remove from global scope once menu system is integrated
-//Application app;
-
 void main()
 {
 	Application app;
 	app.Load();
 	// TODO: Remove call to dummy data, instead use Load and Save
-	//createHardcodedTestData();
+
 	// Create some users
 	User* u1 = new Admin("Alice", "password", Date(16, 6, 2018), 1000004);
 	User* u2 = new Player("Bob", "password", Date(19, 9, 2018), 1000);
@@ -54,14 +50,12 @@ void main()
 	app.accounts.getListItem(0)->users.addAtEnd(u2);
 	app.accounts.getListItem(0)->users.addAtEnd(u3);
 
-	// TODO: We need a login menu for accounts, for now we log in the only account
+
 	app.LoginAccount("alice@shu.ac.uk", "password");
 
 
-	// TODO: app.Load();
 	MainMenu("MAIN MENU", &app);
 
-	// TODO: app.Save();
 	app.Save(app.GetStore().games);
 }
 
