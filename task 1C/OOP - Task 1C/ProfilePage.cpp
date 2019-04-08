@@ -11,14 +11,21 @@ void ProfilePage::OutputOptions()
 	for (int i(0); i < pp->library.size(); i++)
 	{
 		Option(i + 1, pp->library.at(i)->GetGame()->GetName());
-		std::cout << "   Play Time: " + pp->library.at(i)->GetPlayTime() + "h" << "\n\n";
+		std::cout << "   Play Time: " + pp->library.at(i)->GetPlayTime() + "h" << "\n";
 	}
+
+	std::cout << "\n  " << "your credit amount is :" << pp->GetCredits() << "\n\n";
+
 	Option('N', "Sort By Game Name");
 	Option('D', "Sort By Date of Purchase");
 	Option('C', "Add Credits");
-	std::cout << "\n  " << "your credit amount is :" << pp->GetCredits() << "\n";
 	
 	
+	Admin* pa = dynamic_cast<Admin*>(pp);
+	if (pa != nullptr)
+	{
+		Option('M', "Manage Users");
+	}
 
 	
 }
@@ -70,6 +77,29 @@ bool ProfilePage::HandleChoice(char choice)
 		else if (temp == 2)
 		{
 			std::sort(pp->library.begin(), pp->library.end(), predDateAsc());
+		}
+	}
+	if (toupper(choice) == 'M')
+	{
+		Admin* pa = dynamic_cast<Admin*>(pp);
+		if (pa != nullptr)
+		{
+			for (int i(1); i < app->GetCurrentAccount()->users.length(); i++)
+			{
+				std::cout << "\n  " << to_string(i) << ") Delete " << app->GetCurrentAccount()->users.getListItem(i)->GetUsername();
+			}
+			std::cout << "\n  " << to_string(app->GetCurrentAccount()->users.length()) << ") " << "Add new user\n\n";
+			int admChoice = stoi(Question("Choose an option"));
+
+			if (admChoice > 0 && admChoice < app->GetCurrentAccount()->users.length())
+			{
+				app->GetCurrentAccount()->users.getListItem(admChoice)->~User();
+			}
+			else if (admChoice == app->GetCurrentAccount()->users.length())
+			{
+				User* pu = new Player(Question("Enter a Username"), Question("Enter a Password"), Date(), 0);
+				app->accounts.getListItem(0)->users.addAtEnd(pu);
+			}
 		}
 	}
 	return false;
