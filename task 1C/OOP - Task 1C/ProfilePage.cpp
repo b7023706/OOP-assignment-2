@@ -28,9 +28,22 @@ bool ProfilePage::HandleChoice(char choice)
 
 	if (index >= 0 && index < app->GetCurrentUser()->library.size())
 	{
-		Utils u;
-		float randomTime = u.getRandomTime();
-		app->GetCurrentUser()->library.at(index)->SetPlayTime(randomTime);
+		int temp = stoi(Question("1) Play Game, 2) review the game"));
+		if (temp == 1) {
+
+			Utils u;
+			float randomTime = u.getRandomTime();
+			app->GetCurrentUser()->library.at(index)->SetPlayTime(randomTime);
+		}
+		else if (temp == 2) {
+			int temp = stoi(Question("1) Like, 2) Disklike"));
+			if (temp == 1) {
+
+			}
+			else if(temp == 2){
+
+			}
+		}
 
 	}
 	if (toupper(choice) == 'C')
