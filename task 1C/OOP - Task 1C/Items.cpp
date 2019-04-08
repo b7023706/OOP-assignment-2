@@ -43,7 +43,7 @@ bool Items::HandleChoice(char choice)
 			
 			for (int i(0); i < app->GetCurrentUser()->library.length(); i++)
 			{
-				if (app->GetCurrentUser()->library.getListItem(i)->GetGame().GetName() == list.getListItem(ItemOption).GetName())
+				if (app->GetCurrentUser()->library.getListItem(i)->GetGame()->GetName() == list.getListItem(ItemOption).GetName())
 				{
 					gotGame = true;
 				}

@@ -105,11 +105,18 @@ void Application::Load()
 	string total;
 	ifstream Loaded;
 	Loaded.open("Data");
-
+	// store stuff
 	vector<string> names;
 	vector<string> descriptions;
 	vector<int> prices;
 	vector<int> ratings;
+	// user stuff
+	vector<string> userName;
+	vector<string> userGame;
+	vector<int> credits;
+	vector<float> playTime;
+
+
 	vector<string> input;
 	vector<string> separated;
 	string line;
@@ -155,6 +162,7 @@ void Application::Load()
 			}
 		}
 	}
+
 
 	//add them into store
 

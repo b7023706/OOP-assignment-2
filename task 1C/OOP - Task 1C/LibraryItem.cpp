@@ -8,12 +8,28 @@ LibraryItem::~LibraryItem()
 {
 }
 
-const Game LibraryItem::GetGame()
+const Game* LibraryItem::GetGame()
 {
-	return game;
+	return &game;
 }
 
 const float LibraryItem::GetPlayTime() const
 {
-	return playTime;
+	if (playTime < 60)
+	{
+		return playTime;
+	}
+	else if (playTime > 60 && playTime < 300)
+	{
+		return playTime / 60;
+	}
+	else
+	{
+		return playTime;
+	}
+}
+
+void LibraryItem::SetPlayTime(float randomTime)
+{
+	playTime = randomTime + GetPlayTime();
 }

@@ -9,8 +9,9 @@ class LibraryItem
 		LibraryItem(const Date, Game, float);
 		~LibraryItem();
 
-		const Game GetGame();
+		const Game* GetGame();
 		const float GetPlayTime() const;
+		void SetPlayTime(float);
 
 	private:
 		const Game game;
