@@ -20,3 +20,8 @@ const std::string& Account::GetPassword() const
 {
 	return password;
 }
+
+const Date& Account::GetDate() const
+{
+	return created;
+}

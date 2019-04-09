@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Account.h"
-#include "User.h"
+#include "Admin.h"
 #include "Store.h"
 
 class Application

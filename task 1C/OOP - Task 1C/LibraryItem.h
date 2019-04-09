@@ -13,6 +13,7 @@ class LibraryItem
 		const string GetPlayTime() const;
 		void SetPlayTime(float);
 		const Date* GetDate();
+		string GetPlayTimeSign();
 
 	private:
 		const Game game;

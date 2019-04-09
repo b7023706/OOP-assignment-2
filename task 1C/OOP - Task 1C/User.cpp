@@ -17,3 +17,8 @@ const std::string& User::GetPassword() const
 {
 	return password;
 }
+
+const Date& User::GetDate() const
+{
+	return created;
+}

@@ -11,7 +11,7 @@ void ProfilePage::OutputOptions()
 	for (int i(0); i < pp->library.size(); i++)
 	{
 		Option(i + 1, pp->library.at(i)->GetGame()->GetName());
-		std::cout << "   Play Time: " + pp->library.at(i)->GetPlayTime() + "h" << "\n";
+		std::cout << "   Play Time: " + pp->library.at(i)->GetPlayTime() + pp->library.at(i)->GetPlayTimeSign() << "\n";
 	}
 
 	std::cout << "\n  " << "your credit amount is :" << pp->GetCredits() << "\n\n";
@@ -34,11 +34,28 @@ bool ProfilePage::HandleChoice(char choice)
 {
 	int index = choice - '1';
 	Player* pp = dynamic_cast<Player*>(app->GetCurrentUser());
+	bool gameRating;
 	if (index >= 0 && index < pp->library.size())
 	{
-		Utils u;
-		float randomTime = u.getRandomTime();
-		pp->library.at(index)->SetPlayTime(randomTime);
+		int temp = stoi(Question("1) Play Game, 2) Review Game"));
+		if (temp == 1)
+		{
+			Utils u;
+			float randomTime = u.getRandomTime();
+			pp->library.at(index)->SetPlayTime(randomTime);
+		}
+		else if (temp == 2)
+		{
+			int temp = stoi(Question("1) Like, 2) Dislike"));
+			if (temp == 1)
+			{
+				app->GetStore().games.getListItem(index).SetReview(gameRating = true);
+			}
+			else if (temp == 2)
+			{
+				app->GetStore().games.getListItem(index).SetReview(gameRating = false);
+			}
+		}
 
 	}
 	if (toupper(choice) == 'C')
@@ -92,7 +109,7 @@ bool ProfilePage::HandleChoice(char choice)
 			string input = Question("Choose an option");
 			int admChoice = 0;
 			if(input != "")
-				int admChoice = stoi(input);
+				admChoice = stoi(input);
 
 			if (admChoice > 0 && admChoice < app->GetCurrentAccount()->users.length())
 			{

@@ -13,6 +13,7 @@ void StoreMenu::OutputOptions()
 	{
 			// adding 1 so the display is nicer for the user
 		Option(i + 1, app->GetStore().games.getListItem(i).GetName());
+		std::cout << "		rating: " + app->GetStore().games.getListItem(i).GetReview() << "%" << "\n\n";
 	}
 	Option('S', "Search store");
 }

@@ -127,6 +127,8 @@ void Application::Load()
 	string objects;
 
 	int numOfGames;
+	vector<int> numOfUsers;
+	vector<int> numOfItems;
 	int currentPos = 0;
 
 
@@ -172,43 +174,98 @@ void Application::Load()
 		}
 	}
 
-	currentPos = (numOfGames * 4);
+	currentPos = (numOfGames * 4) + 1;
 
-	for (int i(currentPos); i < separated.size(); i++)
+	for (int i(currentPos); i < separated.size(); i = i)
 	{
-		accountEmails.push_back(separated.at(i));
-		accountPassword.push_back(separated.at(i + 1));
-		accountDate.push_back(separated.at(i + 2));
+		accountEmails.push_back(separated.at(i)); i++;
+		accountPassword.push_back(separated.at(i)); i++;
+		accountDate.push_back(separated.at(i)); i++;
 
-		int numOfUsers = stoi(separated.at(i + 3));
-		for (int j(0); j < numOfUsers; j = j + 4)
+		numOfUsers.push_back(stoi(separated.at(i))); i++;
+		for (int j(0); j < numOfUsers.at(numOfUsers.size() - 1); j++)
 		{
-			userName.push_back(separated.at(i + 3 + j));
-			userPassword.push_back(separated.at(i + 4 + j));
-			userDate.push_back(separated.at(i + 5 + j));
-			userCredits.push_back(stoi(separated.at(i + 6 + j)));
+			userName.push_back(separated.at(i)); i++;
+			userPassword.push_back(separated.at(i)); i++;
+			userDate.push_back(separated.at(i)); i++;
+			userCredits.push_back(stoi(separated.at(i))); i++;
+
+			numOfItems.push_back(stoi(separated.at(i))); i++;
+			for (int j(0); j < numOfItems.at(numOfItems.size() - 1); j++)
+			{
+				itemDate.push_back(separated.at(i)); i++;
+				itemName.push_back(separated.at(i)); i++;
+				itemTime.push_back(stoi(separated.at(i))); i++;
+			}
 		}
-
-		i = i + (numOfUsers * 4);
-
-		int numOfItems = stoi(separated.at(i));
-		for (int j(0); j < numOfItems; j = j + 3)
-		{
-			itemDate.push_back(separated.at(i + j + 1));
-			itemName.push_back(separated.at(i + j + 2));
-			itemTime.push_back(stoi(separated.at(i + j + 3)));
-		}
-
-		i = i + (numOfItems * 3);
 	}
 
 	//add them into store
 
-	for (int i = 0; i < gameNames.size(); i++)
+	for (int i(0); i < gameNames.size(); i++)
 	{
 		GetStore().games.addAtEnd(Game(gameNames.at(i), gameDescriptions.at(i), gamePrices.at(i), gameRatings.at(i)));
 	}
 
+	while(accountEmails.size() != 0)
+	{
+		stringstream ssAcc(accountDate.at(0));
+		Date d;
+		d.getDataFromStream(ssAcc);
+		accounts.addAtEnd(new Account(accountEmails.at(0), accountPassword.at(0), d));
+		for(int i(0); i < numOfUsers.size(); i++)
+		{
+			for (int j(0); j < numOfUsers.at(i); j++)
+			{
+				if (j == 0)
+				{
+					stringstream ssUsr(userDate.at(0));
+					d.getDataFromStream(ssUsr);
+					User* usr = new Admin(userName.at(0), userPassword.at(0), d, userCredits.at(0));
+					accounts.getListItem(accounts.length() - 1)->users.addAtEnd(usr);
+				}
+				else
+				{
+					stringstream ssUsr(userDate.at(0));
+					d.getDataFromStream(ssUsr);
+					User* usr = new Player(userName.at(0), userPassword.at(0), d, userCredits.at(0));
+					accounts.getListItem(accounts.length() - 1)->users.addAtEnd(usr);
+				}
+
+				
+				userName.erase(userName.begin());
+				userPassword.erase(userPassword.begin());
+				userDate.erase(userDate.begin());
+				userCredits.erase(userCredits.begin());
+			}
+			accountEmails.erase(accountEmails.begin());
+			accountPassword.erase(accountPassword.begin());
+			accountDate.erase(accountDate.begin());
+		}
+		for (int i(0); i < accounts.length(); i++)
+		{
+			for (int j(0); j < accounts.getListItem(i)->users.length(); j++)
+			{
+				for (int k(0); k < numOfItems.at(j); k++)
+				{
+					stringstream ssLbr(itemDate.at(k));
+					d.getDataFromStream(ssLbr);
+					Player* pp = dynamic_cast<Player*>(accounts.getListItem(i)->users.getListItem(j));
+					for (int l(0); l < GetStore().games.length(); l++)
+					{
+						if (GetStore().games.getListItem(l).GetName() == itemName.at(k))
+						{
+							Game g = GetStore().games.getListItem(l);
+							pp->library.push_back(new LibraryItem(d, g, itemTime.at(k)));
+						}
+					}
+					/*itemName.erase(itemName.begin());
+					itemDate.erase(itemDate.begin());
+					itemTime.erase(itemTime.begin());*/
+				}
+			}
+		}
+	}
 
 }
 
@@ -219,14 +276,45 @@ void Application::Save(List<Game> aList)
 
 	//games
 
+	DataBase << aList.length() << "|" << endl;
 	for (int i = 0; i < aList.length(); i++)
 	{
 		DataBase << aList.getListItem(i).GetName() << "|" << aList.getListItem(i).GetDescription() << "|" << aList.getListItem(i).GetCost() << "|" << aList.getListItem(i).GetRating() << "|" << endl;
 	}
 
-	//accounts
-	//need to know if admin
+	//accounts, Users + Libraries
+	for (int i(0); i < accounts.length(); i++)
+	{
+		Account* a = accounts.getListItem(i);
 
+		stringstream ssAcc; 
+		a->GetDate().putDataInStream(ssAcc);
+
+		DataBase << a->GetEmail() << "|" << a->GetPassword() << "|" << ssAcc.str() << "|" << endl;
+		DataBase << to_string(a->users.length()) << "|" << endl;
+
+		for (int j(0); j < a->users.length(); j++)
+		{
+			User* u = accounts.getListItem(i)->users.getListItem(j);
+			Player* pp = dynamic_cast<Player*>(accounts.getListItem(i)->users.getListItem(j));
+
+			stringstream ssUsr;
+			u->GetDate().putDataInStream(ssUsr);
+			
+			DataBase << u->GetUsername() << "|" << u->GetPassword() << "|" << ssUsr.str() << "|" << to_string(pp->GetCredits()) << "|" << endl;
+			DataBase << to_string(pp->library.size()) << "|" << endl;
+
+			for (int k(0); k < pp->library.size(); k++)
+			{
+				LibraryItem* item = pp->library.at(k);
+
+				stringstream ssItem;
+				item->GetDate()->putDataInStream(ssItem);
+
+				DataBase << ssItem.str() << "|" << item->GetGame()->GetName() << "|" << item->GetPlayTime() << "|" << endl;
+			}
+		}
+	}
 
 	DataBase.close();
 }

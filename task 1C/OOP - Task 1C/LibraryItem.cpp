@@ -41,3 +41,15 @@ void LibraryItem::SetPlayTime(float randomTime)
 {
 	playTime += randomTime;
 }
+
+string LibraryItem::GetPlayTimeSign()
+{
+	if (playTime < 60)
+	{
+		return "m";
+	}
+	else
+	{
+		return "h";
+	}
+}
