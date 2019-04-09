@@ -101,22 +101,33 @@ void Application::Load()
 	string total;
 	ifstream Loaded;
 	Loaded.open("Data");
-	// store stuff
-	vector<string> names;
-	vector<string> descriptions;
-	vector<int> prices;
-	vector<int> ratings;
-	// user stuff
+	// Games data
+	vector<string> gameNames;
+	vector<string> gameDescriptions;
+	vector<int> gamePrices;
+	vector<int> gameRatings;
+	// Account data
+	vector<string> accountEmails;
+	vector<string> accountPassword;
+	vector<string> accountDate;
+	// User Data
 	vector<string> userName;
-	vector<string> userGame;
-	vector<int> credits;
-	vector<float> playTime;
+	vector<string> userPassword;
+	vector<string> userDate;
+	vector<int> userCredits;
+	// library data
+	vector<string> itemDate;
+	vector<string> itemName;
+	vector<float> itemTime;
 
 
 	vector<string> input;
 	vector<string> separated;
 	string line;
 	string objects;
+
+	int numOfGames;
+	int currentPos = 0;
 
 
 	while (getline(Loaded, line))
@@ -125,6 +136,8 @@ void Application::Load()
 	}
 
 	Loaded.close();
+
+	
 
 	for (int i(0); i < input.size(); i++)
 	{
@@ -135,36 +148,65 @@ void Application::Load()
 		}
 	}
 
+	numOfGames = stoi(separated.at(0));
 
-
-	for (int j(0); j < separated.size(); j = j + 4)
+	for (int j(1); j < (numOfGames * 4); j = j + 4)
 	{
 		for (int k(0); k < 4; k++)
 		{
 			switch (k)
 			{
 			case 0:
-				names.push_back(separated.at(j));
+				gameNames.push_back(separated.at(j));
 				break;
 			case 1:
-				descriptions.push_back(separated.at(j + 1));
+				gameDescriptions.push_back(separated.at(j + 1));
 				break;
 			case 2:
-				prices.push_back(stoi(separated.at(j + 2)));
+				gamePrices.push_back(stoi(separated.at(j + 2)));
 				break;
 			case 3:
-				ratings.push_back(stoi(separated.at(j + 3)));
+				gameRatings.push_back(stoi(separated.at(j + 3)));
 				break;
 			}
 		}
 	}
 
+	currentPos = (numOfGames * 4);
+
+	for (int i(currentPos); i < separated.size(); i++)
+	{
+		accountEmails.push_back(separated.at(i));
+		accountPassword.push_back(separated.at(i + 1));
+		accountDate.push_back(separated.at(i + 2));
+
+		int numOfUsers = stoi(separated.at(i + 3));
+		for (int j(0); j < numOfUsers; j = j + 4)
+		{
+			userName.push_back(separated.at(i + 3 + j));
+			userPassword.push_back(separated.at(i + 4 + j));
+			userDate.push_back(separated.at(i + 5 + j));
+			userCredits.push_back(stoi(separated.at(i + 6 + j)));
+		}
+
+		i = i + (numOfUsers * 4);
+
+		int numOfItems = stoi(separated.at(i));
+		for (int j(0); j < numOfItems; j = j + 3)
+		{
+			itemDate.push_back(separated.at(i + j + 1));
+			itemName.push_back(separated.at(i + j + 2));
+			itemTime.push_back(stoi(separated.at(i + j + 3)));
+		}
+
+		i = i + (numOfItems * 3);
+	}
 
 	//add them into store
 
-	for (int i = 0; i < names.size(); i++)
+	for (int i = 0; i < gameNames.size(); i++)
 	{
-		GetStore().games.addAtEnd(Game(names.at(i), descriptions.at(i), prices.at(i), ratings.at(i)));
+		GetStore().games.addAtEnd(Game(gameNames.at(i), gameDescriptions.at(i), gamePrices.at(i), gameRatings.at(i)));
 	}
 
 

@@ -89,11 +89,14 @@ bool ProfilePage::HandleChoice(char choice)
 				std::cout << "\n  " << to_string(i) << ") Delete " << app->GetCurrentAccount()->users.getListItem(i)->GetUsername();
 			}
 			std::cout << "\n  " << to_string(app->GetCurrentAccount()->users.length()) << ") " << "Add new user\n\n";
-			int admChoice = stoi(Question("Choose an option"));
+			string input = Question("Choose an option");
+			int admChoice = 0;
+			if(input != "")
+				int admChoice = stoi(input);
 
 			if (admChoice > 0 && admChoice < app->GetCurrentAccount()->users.length())
 			{
-				app->GetCurrentAccount()->users.getListItem(admChoice)->~User();
+				app->GetCurrentAccount()->users.deleteOne(app->GetCurrentAccount()->users.getListItem(admChoice));
 			}
 			else if (admChoice == app->GetCurrentAccount()->users.length())
 			{
